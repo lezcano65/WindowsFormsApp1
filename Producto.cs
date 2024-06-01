@@ -11,18 +11,18 @@ namespace WindowsFormsApp1
         int pCodigo;
         string pDetalle;
         int pTipo;
-        int pMarca;
+        string pMarca;
         double pPrecio;
         DateTime pFecha;
 
         public int PCodigo { get => pCodigo; set => pCodigo = value; }
         public string PDetalle { get => pDetalle; set => pDetalle = value; }
         public int PTipo { get => pTipo; set => pTipo = value; }
-        public int PMarca { get => pMarca; set => pMarca = value; }
+        public string PMarca { get => pMarca; set => pMarca = value; }
         public double PPrecio { get => pPrecio; set => pPrecio = value; }
         public DateTime PFecha { get => pFecha; set => pFecha = value; }
 
-        public Producto(int codigo, string detalle, int tipo, int marca, double precio, DateTime fecha)
+        public Producto(int codigo, string detalle, int tipo, string marca, double precio, DateTime fecha)
         {
             this.PCodigo = codigo;
             this.PDetalle = detalle;
@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
             PCodigo = 0;
             PDetalle = "";
             PTipo = 0;
-            PMarca = 0;
+            PMarca = "";
             PPrecio = 0;
             PFecha = DateTime.Today;
         }

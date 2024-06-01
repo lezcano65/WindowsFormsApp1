@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonNuevo = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonBorrar = new System.Windows.Forms.Button();
@@ -40,19 +41,22 @@
             this.labelTipo = new System.Windows.Forms.Label();
             this.labelPrecio = new System.Windows.Forms.Label();
             this.labelFecha = new System.Windows.Forms.Label();
-            this.textBoxCodigo = new System.Windows.Forms.TextBox();
             this.textBoxDetalle = new System.Windows.Forms.TextBox();
-            this.textBoxPrecio = new System.Windows.Forms.TextBox();
-            this.comboBoxMarca = new System.Windows.Forms.ComboBox();
             this.dateTimePickerFecha = new System.Windows.Forms.DateTimePicker();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.dataGridViewList = new System.Windows.Forms.DataGridView();
-            this.listViewStock = new System.Windows.Forms.ListView();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.labelFilas = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.numericPrecio = new System.Windows.Forms.NumericUpDown();
+            this.numericTipo = new System.Windows.Forms.NumericUpDown();
+            this.numericCodigo = new System.Windows.Forms.NumericUpDown();
+            this.textBoxMarca = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTipo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCodigo)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonNuevo
@@ -64,6 +68,7 @@
             this.buttonNuevo.TabIndex = 0;
             this.buttonNuevo.Text = "Nuevo";
             this.buttonNuevo.UseVisualStyleBackColor = true;
+            this.buttonNuevo.Click += new System.EventHandler(this.buttonNuevo_Click_1);
             // 
             // buttonEditar
             // 
@@ -84,6 +89,7 @@
             this.buttonBorrar.TabIndex = 2;
             this.buttonBorrar.Text = "Borrar";
             this.buttonBorrar.UseVisualStyleBackColor = true;
+            this.buttonBorrar.Click += new System.EventHandler(this.buttonBorrar_Click);
             // 
             // buttonLimpiar
             // 
@@ -94,6 +100,7 @@
             this.buttonLimpiar.TabIndex = 3;
             this.buttonLimpiar.Text = "Limpiar";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
+            this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click_1);
             // 
             // Cancelar
             // 
@@ -175,14 +182,6 @@
             this.labelFecha.TabIndex = 12;
             this.labelFecha.Text = "Fecha";
             // 
-            // textBoxCodigo
-            // 
-            this.textBoxCodigo.AccessibleName = "textBoxCodigo";
-            this.textBoxCodigo.Location = new System.Drawing.Point(80, 21);
-            this.textBoxCodigo.Name = "textBoxCodigo";
-            this.textBoxCodigo.Size = new System.Drawing.Size(181, 20);
-            this.textBoxCodigo.TabIndex = 13;
-            // 
             // textBoxDetalle
             // 
             this.textBoxDetalle.AccessibleName = "textBoxDetalle";
@@ -191,57 +190,18 @@
             this.textBoxDetalle.Size = new System.Drawing.Size(181, 20);
             this.textBoxDetalle.TabIndex = 14;
             // 
-            // textBoxPrecio
-            // 
-            this.textBoxPrecio.AccessibleName = "textBoxPrecio";
-            this.textBoxPrecio.Location = new System.Drawing.Point(80, 166);
-            this.textBoxPrecio.Name = "textBoxPrecio";
-            this.textBoxPrecio.Size = new System.Drawing.Size(181, 20);
-            this.textBoxPrecio.TabIndex = 15;
-            // 
-            // comboBoxMarca
-            // 
-            this.comboBoxMarca.AccessibleName = "comboBoxMarca";
-            this.comboBoxMarca.BackColor = System.Drawing.SystemColors.MenuText;
-            this.comboBoxMarca.ForeColor = System.Drawing.Color.White;
-            this.comboBoxMarca.FormattingEnabled = true;
-            this.comboBoxMarca.Location = new System.Drawing.Point(80, 87);
-            this.comboBoxMarca.Name = "comboBoxMarca";
-            this.comboBoxMarca.Size = new System.Drawing.Size(181, 21);
-            this.comboBoxMarca.TabIndex = 17;
-            // 
             // dateTimePickerFecha
             // 
             this.dateTimePickerFecha.AccessibleName = "dateTimePickerFecha";
+            this.dateTimePickerFecha.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerFecha.Location = new System.Drawing.Point(80, 206);
+            this.dateTimePickerFecha.MaxDate = new System.DateTime(2024, 6, 15, 15, 56, 27, 0);
+            this.dateTimePickerFecha.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerFecha.Name = "dateTimePickerFecha";
             this.dateTimePickerFecha.Size = new System.Drawing.Size(181, 20);
             this.dateTimePickerFecha.TabIndex = 18;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AccessibleName = "radioButtonTipoNumero";
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(80, 123);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(62, 17);
-            this.radioButton1.TabIndex = 19;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Numero";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AccessibleName = "radioButtonTipoString";
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(195, 123);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(52, 17);
-            this.radioButton2.TabIndex = 20;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "String";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.dateTimePickerFecha.Value = new System.DateTime(2024, 6, 15, 0, 0, 0, 0);
             // 
             // dataGridViewList
             // 
@@ -253,16 +213,7 @@
             this.dataGridViewList.Size = new System.Drawing.Size(288, 92);
             this.dataGridViewList.TabIndex = 21;
             this.dataGridViewList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // listViewStock
-            // 
-            this.listViewStock.AccessibleName = "listViewStock";
-            this.listViewStock.HideSelection = false;
-            this.listViewStock.Location = new System.Drawing.Point(288, 12);
-            this.listViewStock.Name = "listViewStock";
-            this.listViewStock.Size = new System.Drawing.Size(288, 58);
-            this.listViewStock.TabIndex = 6;
-            this.listViewStock.UseCompatibleStateImageBehavior = false;
+            this.dataGridViewList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // buttonBuscar
             // 
@@ -273,6 +224,7 @@
             this.buttonBuscar.TabIndex = 22;
             this.buttonBuscar.Text = "Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
+            this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
             // textBoxBuscar
             // 
@@ -294,29 +246,63 @@
             this.labelFilas.Text = "Numero de filas";
             this.labelFilas.Click += new System.EventHandler(this.label1_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // numericPrecio
+            // 
+            this.numericPrecio.AccessibleName = "numericPrecio";
+            this.numericPrecio.Location = new System.Drawing.Point(80, 168);
+            this.numericPrecio.Name = "numericPrecio";
+            this.numericPrecio.Size = new System.Drawing.Size(181, 20);
+            this.numericPrecio.TabIndex = 25;
+            // 
+            // numericTipo
+            // 
+            this.numericTipo.AccessibleName = "numericTipo";
+            this.numericTipo.Location = new System.Drawing.Point(80, 125);
+            this.numericTipo.Name = "numericTipo";
+            this.numericTipo.Size = new System.Drawing.Size(181, 20);
+            this.numericTipo.TabIndex = 26;
+            // 
+            // numericCodigo
+            // 
+            this.numericCodigo.AccessibleName = "numericCodigo";
+            this.numericCodigo.Location = new System.Drawing.Point(80, 23);
+            this.numericCodigo.Name = "numericCodigo";
+            this.numericCodigo.Size = new System.Drawing.Size(181, 20);
+            this.numericCodigo.TabIndex = 28;
+            // 
+            // textBoxMarca
+            // 
+            this.textBoxMarca.AccessibleName = "textBoxMarca";
+            this.textBoxMarca.Location = new System.Drawing.Point(80, 89);
+            this.textBoxMarca.Name = "textBoxMarca";
+            this.textBoxMarca.Size = new System.Drawing.Size(181, 20);
+            this.textBoxMarca.TabIndex = 29;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 291);
+            this.Controls.Add(this.textBoxMarca);
+            this.Controls.Add(this.numericCodigo);
+            this.Controls.Add(this.numericTipo);
+            this.Controls.Add(this.numericPrecio);
             this.Controls.Add(this.labelFilas);
             this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.dataGridViewList);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.dateTimePickerFecha);
-            this.Controls.Add(this.comboBoxMarca);
-            this.Controls.Add(this.textBoxPrecio);
             this.Controls.Add(this.textBoxDetalle);
-            this.Controls.Add(this.textBoxCodigo);
             this.Controls.Add(this.labelFecha);
             this.Controls.Add(this.labelPrecio);
             this.Controls.Add(this.labelTipo);
             this.Controls.Add(this.labelMarca);
             this.Controls.Add(this.labelDetalle);
             this.Controls.Add(this.labelCodigo);
-            this.Controls.Add(this.listViewStock);
             this.Controls.Add(this.buttonSalir);
             this.Controls.Add(this.Cancelar);
             this.Controls.Add(this.buttonLimpiar);
@@ -327,6 +313,10 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTipo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCodigo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,18 +336,17 @@
         private System.Windows.Forms.Label labelTipo;
         private System.Windows.Forms.Label labelPrecio;
         private System.Windows.Forms.Label labelFecha;
-        private System.Windows.Forms.TextBox textBoxCodigo;
         private System.Windows.Forms.TextBox textBoxDetalle;
-        private System.Windows.Forms.TextBox textBoxPrecio;
-        private System.Windows.Forms.ComboBox comboBoxMarca;
         private System.Windows.Forms.DateTimePicker dateTimePickerFecha;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.DataGridView dataGridViewList;
-        private System.Windows.Forms.ListView listViewStock;
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.TextBox textBoxBuscar;
         private System.Windows.Forms.Label labelFilas;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.NumericUpDown numericCodigo;
+        private System.Windows.Forms.NumericUpDown numericTipo;
+        private System.Windows.Forms.NumericUpDown numericPrecio;
+        private System.Windows.Forms.TextBox textBoxMarca;
     }
 }
 

@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
         {
             //llamar a listar 
             listar();
+            formato();
         }
         public Form1()
         {
@@ -39,6 +40,19 @@ namespace WindowsFormsApp1
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.Limpiar();
+            string prueba = dataGridViewList.CurrentRow.Cells["pCodigo"].Value.ToString();
+            numericCodigo.Value = Convert.ToInt32(prueba);
+            prueba = dataGridViewList.CurrentRow.Cells["pPrecio"].Value.ToString();
+            numericPrecio.Value = Convert.ToInt32(prueba);
+            prueba = dataGridViewList.CurrentRow.Cells["pTipo"].Value.ToString();
+            numericTipo.Value = Convert.ToInt32(prueba);
+            textBoxDetalle.Text = dataGridViewList.CurrentRow.Cells["pDetalle"].Value.ToString();
+            textBoxMarca.Text = dataGridViewList.CurrentRow.Cells["pMarca"].Value.ToString();
+            //prueba = dataGridViewList.CurrentRow.Cells["pFecha"].Value.ToString();
+            dateTimePickerFecha.Value = DateTime.Now;
+
+
 
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -57,17 +71,145 @@ namespace WindowsFormsApp1
                 //datosSql ds = new datosSql();
                 AccesoDatos ds = new AccesoDatos();
                 dataGridViewList.DataSource = ds.listar();
-                labelFilas.Text = "Numero de filas: "+ Convert.ToString(dataGridViewList.Rows.Count);
-
+                labelFilas.Text = "Numero de filas: "+ Convert.ToString(dataGridViewList.Rows.Count-1 );
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message + ex.StackTrace) ;
             }
+        }
+        //motodo para darle formato
+        private void formato()
+        {
+            dataGridViewList.Columns[0].Visible = false;
+            dataGridViewList.Columns[1].Width = 200;
+
+        }
+        //buscar metodo
+        private void buscar()
+        {
+            try
+            {
+                //refenrecia a la clase datos sql
+                //datosSql ds = new datosSql();
+                AccesoDatos ds = new AccesoDatos();
+                dataGridViewList.DataSource = ds.Buscar(textBoxBuscar.Text);
+                labelFilas.Text = "Numero de filas: " + Convert.ToString(dataGridViewList.Rows.Count - 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+            //llamar al metodo buscar
+            this.buscar();
+        }
+        private void Limpiar()
+        {
+            textBoxDetalle.Clear();
+            textBoxBuscar.Clear();
+            textBoxMarca.Clear();
+            numericTipo.Value = 0;
+            numericCodigo.Value = 0;
+            numericPrecio.Value = 0;
+            textBoxBuscar.Focus();
+            errorProvider1.Clear();
+            
+        }
+
+        private void buttonNuevo_Click(object sender, EventArgs e)
+        {
+            //
 
         }
 
-        
+        private void buttonLimpiar_Click(object sender, EventArgs e)
+        {
+            this.Limpiar();
+        }
+
+        private void buttonLimpiar_Click_1(object sender, EventArgs e)
+        {
+            this.Limpiar();
+        }
+        //metodo para control de mensajes de errores
+        private void MensajeError(string msg)
+        {
+            MessageBox.Show(msg, "Control de Informacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+        private void MensajeOk(string msg)
+        {
+            MessageBox.Show(msg, "Control de Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void buttonNuevo_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string respuesta = "";
+                if (numericCodigo.Text == string.Empty)
+                { 
+                    this.MensajeError("Faltan ingresar algunos datos");
+                    errorProvider1.SetError(numericCodigo, "Ingrese el codigo");
+                    return;
+                }
+                if (textBoxDetalle.Text == string.Empty)
+                {
+                    this.MensajeError("Faltan ingresar algunos datos");
+                    errorProvider1.SetError(textBoxDetalle, "Ingrese el detalle");
+                    return;
+                }
+                if (textBoxMarca.Text == string.Empty)
+                {
+                    this.MensajeError("Faltan ingresar algunos datos");
+                    errorProvider1.SetError(textBoxMarca, "Ingrese la marca ");
+                    return;
+                }
+                if (numericPrecio.Text == string.Empty)
+                {
+                    this.MensajeError("Faltan ingresar algunos datos");
+                    errorProvider1.SetError(numericPrecio, "Ingrese el precio");
+                    return;
+                }
+                // generar una instancia a clase producto
+                Producto obj = new Producto();
+                obj.PCodigo = Convert.ToInt32(numericCodigo.Value);
+                obj.PDetalle = textBoxDetalle.Text;
+                obj.PTipo = Convert.ToInt32(numericTipo.Value);
+                obj.PMarca = textBoxMarca.Text;
+                obj.PPrecio = Convert.ToDouble(numericPrecio.Value);
+                DateTime prueba = dateTimePickerFecha.Value;
+                obj.PFecha = prueba.Date;
+                //Console.WriteLine(obj.PCodigo +" "+ obj.PFecha);
+                //generar instancia sql
+                AccesoDatos ds = new AccesoDatos();
+                respuesta = ds.Insertar(obj);
+                if (respuesta.Equals("OK"))  
+                {
+                    this.MensajeOk("Se inserto de forma correcta el registro");
+                    this.Limpiar();
+                    this.listar();
+
+                }
+                else
+                {
+                    this.MensajeError(respuesta);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+                
+            }
+        }
+
+        private void buttonBorrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
