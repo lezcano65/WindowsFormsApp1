@@ -44,15 +44,20 @@ namespace WindowsFormsApp1
             string prueba = dataGridViewList.CurrentRow.Cells["pCodigo"].Value.ToString();
             numericCodigo.Value = Convert.ToInt32(prueba);
             prueba = dataGridViewList.CurrentRow.Cells["pPrecio"].Value.ToString();
-            numericPrecio.Value = Convert.ToInt32(prueba);
-            prueba = dataGridViewList.CurrentRow.Cells["pTipo"].Value.ToString();
-            numericTipo.Value = Convert.ToInt32(prueba);
+            numericPrecio.Value = Convert.ToDecimal(prueba);
+            prueba = dataGridViewList.CurrentRow.Cells["pCantidad"].Value.ToString();
+            numericCantidad.Value = Convert.ToInt32(prueba);
             textBoxDetalle.Text = dataGridViewList.CurrentRow.Cells["pDetalle"].Value.ToString();
             textBoxMarca.Text = dataGridViewList.CurrentRow.Cells["pMarca"].Value.ToString();
-            //prueba = dataGridViewList.CurrentRow.Cells["pFecha"].Value.ToString();
-            dateTimePickerFecha.Value = DateTime.Now;
-
-
+            prueba = dataGridViewList.CurrentRow.Cells["pFecha"].Value.ToString();
+            if (DateTime.TryParse(prueba, out DateTime fecha))
+            {
+                dateTimePickerFecha.Value = fecha;
+            }
+            else
+            {
+                dateTimePickerFecha.Value = DateTime.Today;
+            }
 
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -71,7 +76,7 @@ namespace WindowsFormsApp1
                 //datosSql ds = new datosSql();
                 AccesoDatos ds = new AccesoDatos();
                 dataGridViewList.DataSource = ds.listar();
-                labelFilas.Text = "Numero de filas: "+ Convert.ToString(dataGridViewList.Rows.Count-1 );
+                labelFilas.Text = "Numero de Registros: "+ Convert.ToString(dataGridViewList.Rows.Count-1 );
             }
             catch (Exception ex)
             {
@@ -112,7 +117,7 @@ namespace WindowsFormsApp1
             textBoxDetalle.Clear();
             textBoxBuscar.Clear();
             textBoxMarca.Clear();
-            numericTipo.Value = 0;
+            numericCantidad.Value = 0;
             numericCodigo.Value = 0;
             numericPrecio.Value = 0;
             textBoxBuscar.Focus();
@@ -179,11 +184,12 @@ namespace WindowsFormsApp1
                 Producto obj = new Producto();
                 obj.PCodigo = Convert.ToInt32(numericCodigo.Value);
                 obj.PDetalle = textBoxDetalle.Text;
-                obj.PTipo = Convert.ToInt32(numericTipo.Value);
+                obj.PCantidad = Convert.ToInt32(numericCantidad.Value);
                 obj.PMarca = textBoxMarca.Text;
                 obj.PPrecio = Convert.ToDouble(numericPrecio.Value);
-                DateTime prueba = dateTimePickerFecha.Value;
-                obj.PFecha = prueba.Date;
+
+                //DateTime prueba = new DateTime(dateTimePickerFecha.Value.Year, dateTimePickerFecha.Value.Month, dateTimePickerFecha.Value.Day);
+                obj.PFecha = dateTimePickerFecha.Value;
                 //Console.WriteLine(obj.PCodigo +" "+ obj.PFecha);
                 //generar instancia sql
                 AccesoDatos ds = new AccesoDatos();
@@ -208,6 +214,124 @@ namespace WindowsFormsApp1
         }
 
         private void buttonBorrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (numericCodigo.Text == string.Empty)
+                {
+                    this.MensajeError("Faltan ingresar algunos datos");
+                    errorProvider1.SetError(numericCodigo, "Ingrese el codigo");
+                    return;
+                }
+                DialogResult Opcion;
+                string respuesta = "";
+                Opcion = MessageBox.Show("Realmente desea eliminar el registro","Registros",
+                    MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+                if (Opcion == DialogResult.OK) 
+                {
+                    //enviar la info a la clase AccesoDatos
+                    AccesoDatos ds = new AccesoDatos();
+                    respuesta = ds.Eliminar(Convert.ToInt32(numericCodigo.Value));
+
+                }
+                if (respuesta.Equals("OK")) 
+                {
+                    this.MensajeOk("Se elimino de forma correcta el registro codigo: " + numericCodigo.Value);
+                    this.Limpiar();
+                    this.listar();
+                }
+                else
+                {
+                    this.MensajeError(respuesta);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+               
+            }
+
+        }
+
+        private void dateTimePickerFecha_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerFecha.MaxDate = DateTime.Today;
+        }
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string respuesta = "";
+                if (numericCodigo.Text == string.Empty)
+                {
+                    this.MensajeError("Faltan ingresar algunos datos");
+                    errorProvider1.SetError(numericCodigo, "Ingrese el codigo");
+                    return;
+                }
+                if (textBoxDetalle.Text == string.Empty)
+                {
+                    this.MensajeError("Faltan ingresar algunos datos");
+                    errorProvider1.SetError(textBoxDetalle, "Ingrese el detalle");
+                    return;
+                }
+                if (textBoxMarca.Text == string.Empty)
+                {
+                    this.MensajeError("Faltan ingresar algunos datos");
+                    errorProvider1.SetError(textBoxMarca, "Ingrese la marca ");
+                    return;
+                }
+                if (numericPrecio.Text == string.Empty)
+                {
+                    this.MensajeError("Faltan ingresar algunos datos");
+                    errorProvider1.SetError(numericPrecio, "Ingrese el precio");
+                    return;
+                }
+                // generar una instancia a clase producto
+                Producto obj = new Producto();
+                obj.PCodigo = Convert.ToInt32(numericCodigo.Value);
+                obj.PDetalle = textBoxDetalle.Text;
+                obj.PCantidad = Convert.ToInt32(numericCantidad.Value);
+                obj.PMarca = textBoxMarca.Text;
+                obj.PPrecio = Convert.ToDouble(numericPrecio.Value);
+                obj.PFecha = dateTimePickerFecha.Value;
+                //generar instancia sql
+                AccesoDatos ds = new AccesoDatos();
+                respuesta = ds.Actualizar(obj);
+                if (respuesta.Equals("OK"))
+                {
+                    this.MensajeOk("Se actualizo de forma correcta el registro codigo: "+ obj.PCodigo.ToString());
+                    this.Limpiar();
+                    this.listar();
+                }
+                else
+                {
+                    this.MensajeError(respuesta);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void numericTipo_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxBuscar_DragEnter(object sender, DragEventArgs e)
+        {
+            //
+            //this.buscar();
+        }
+
+        private void labelMarca_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelDetalle_Click(object sender, EventArgs e)
         {
 
         }

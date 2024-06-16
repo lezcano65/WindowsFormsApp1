@@ -149,13 +149,13 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "Insert into Producto (pCodigo,pDetalle,pTipo,pMarca,pPrecio,pFecha) values(" +
+                string query = "Insert into Producto (pCodigo,pDetalle,pCantidad,pMarca,pPrecio,pFecha) values(" +
                     "'" + obj.PCodigo + "'," +
                     "'" +obj.PDetalle+"'," +
-                    "'"+obj.PTipo+"'," +
+                    "'"+obj.PCantidad + "'," +
                     "'"+obj.PMarca+"'," +
                     "'"+obj.PPrecio+"'," +
-                    "'"+obj.PFecha.Date + "')";
+                    "'"+obj.PFecha.ToString("yyyy-MM-ddTHH:mm:ss") + "')";
                 //nos devuelve el string de conexion a sql
                 con = conexion.crearInstancia().crearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
@@ -197,8 +197,9 @@ namespace WindowsFormsApp1
                 string query = "Update Producto set pCodigo = '"+obj.PCodigo+"', pDetalle = " +
                     "'"+obj.PDetalle+"', pMarca = " +
                     "'"+obj.PMarca+"', pPrecio = " +
-                    "'"+obj.PPrecio+"', pFecha = " +
-                    "'"+obj.PFecha+ "' where  pCodigo = '"+obj.PCodigo+"'";
+                    "'"+obj.PPrecio+ "', pCantidad = " +
+                    "'"+obj.PCantidad+"', pFecha = " +
+                    "'" + obj.PFecha.ToString("yyyy-MM-ddTHH:mm:ss") + "' where  pCodigo = '"+obj.PCodigo+"'";
                 //nos devuelve el string de conexion a sql
                 con = conexion.crearInstancia().crearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
@@ -206,6 +207,35 @@ namespace WindowsFormsApp1
                 //en 1 sola linea la exepcion
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo actualizar el registro";
                 
+            }
+            catch (Exception ex)
+            {
+                respuesta = ex.Message;
+                //throw ex;
+            }
+            finally
+            {
+                // por estar dentro de un try en TEORIA no hace falta
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+            return respuesta;
+        }
+        //borrar los registros
+        public string Eliminar(int Id)
+        {
+            string respuesta = "";
+            //debemos conectarnos a la base de datos
+            SqlConnection con = new SqlConnection();
+            try
+            {
+                string query = "delete from Producto where pCodigo = '"+Id+"'";
+                //nos devuelve el string de conexion a sql
+                con = conexion.crearInstancia().crearConexion();
+                SqlCommand comando = new SqlCommand(query, con);
+                con.Open();
+                //en 1 sola linea la exepcion
+                respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se elimino el registro correctamente verifique que el ID sea correcto";
+
             }
             catch (Exception ex)
             {
