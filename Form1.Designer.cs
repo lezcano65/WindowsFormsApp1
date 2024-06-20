@@ -46,13 +46,12 @@
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.labelFilas = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.numericPrecio = new System.Windows.Forms.NumericUpDown();
             this.numericCantidad = new System.Windows.Forms.NumericUpDown();
             this.numericCodigo = new System.Windows.Forms.NumericUpDown();
             this.textBoxMarca = new System.Windows.Forms.TextBox();
+            this.textBoxPrecio = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericCodigo)).BeginInit();
             this.SuspendLayout();
@@ -232,20 +231,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // numericPrecio
-            // 
-            this.numericPrecio.AccessibleName = "numericPrecio";
-            this.numericPrecio.DecimalPlaces = 2;
-            this.numericPrecio.Location = new System.Drawing.Point(53, 96);
-            this.numericPrecio.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericPrecio.Name = "numericPrecio";
-            this.numericPrecio.Size = new System.Drawing.Size(116, 20);
-            this.numericPrecio.TabIndex = 25;
-            // 
             // numericCantidad
             // 
             this.numericCantidad.AccessibleName = "numericCantidad";
@@ -270,16 +255,27 @@
             this.textBoxMarca.Name = "textBoxMarca";
             this.textBoxMarca.Size = new System.Drawing.Size(116, 20);
             this.textBoxMarca.TabIndex = 29;
+            this.textBoxMarca.TextChanged += new System.EventHandler(this.textBoxMarca_TextChanged);
+            // 
+            // textBoxPrecio
+            // 
+            this.textBoxPrecio.AccessibleName = "textBoxPrecio";
+            this.textBoxPrecio.Location = new System.Drawing.Point(53, 96);
+            this.textBoxPrecio.Name = "textBoxPrecio";
+            this.textBoxPrecio.Size = new System.Drawing.Size(116, 20);
+            this.textBoxPrecio.TabIndex = 30;
+            this.textBoxPrecio.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            this.textBoxPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPrecio_KeyPress);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 291);
+            this.ClientSize = new System.Drawing.Size(603, 210);
+            this.Controls.Add(this.textBoxPrecio);
             this.Controls.Add(this.textBoxMarca);
             this.Controls.Add(this.numericCodigo);
             this.Controls.Add(this.numericCantidad);
-            this.Controls.Add(this.numericPrecio);
             this.Controls.Add(this.labelFilas);
             this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.buttonBuscar);
@@ -301,7 +297,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericCodigo)).EndInit();
             this.ResumeLayout(false);
@@ -330,8 +325,8 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.NumericUpDown numericCodigo;
         private System.Windows.Forms.NumericUpDown numericCantidad;
-        private System.Windows.Forms.NumericUpDown numericPrecio;
         private System.Windows.Forms.TextBox textBoxMarca;
+        private System.Windows.Forms.TextBox textBoxPrecio;
     }
 }
 
