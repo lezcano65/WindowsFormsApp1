@@ -17,7 +17,6 @@ namespace WindowsFormsApp1
         private bool Seguridad;
         // crea un obj de tipo conexion nos sirve para compartit y realizar la conexion
         private static conexion con = null;
-
         private conexion() 
         { 
             this.Base = "aplicacionBD";
@@ -44,7 +43,6 @@ namespace WindowsFormsApp1
                 else
                 {
                     cadena.ConnectionString = cadena.ConnectionString + "User Id=" + this.Usuario + "; Password=" + this.Clave;
-
                 }
             }
             catch (Exception ex)

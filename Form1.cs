@@ -10,19 +10,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
 
-//using Microsof.E 
-
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        //const int tam = 5;
-        // select * from TABLA where nombre like '%' + var + '%' or apellido like '%' + var + '%'
-        //string prueba = "Data Source=DESKTOP-0K564JG;Initial Catalog = aplicacionBD; Integrated Security = True; Connect Timeout = 30; Encrypt=True;Trust Server Certificate=True;Application Intent = ReadWrite; Multi Subnet Failover=False";
-        //AccesoDatos oDatos = new AccesoDatos(@"Data Source=DESKTOP-0K564JG;Initial Catalog = aplicacionBD; Integrated Security = True; Connect Timeout = 30; Encrypt=True;Trust Server Certificate=True;Application Intent = ReadWrite; Multi Subnet Failover=False");
-
-        //cargar el datagridview
-
         private void Form1_Load(object sender, EventArgs e)
         {
             //llamar a listar 
@@ -33,7 +24,6 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -86,9 +76,7 @@ namespace WindowsFormsApp1
         //motodo para darle formato
         private void formato()
         {
-            dataGridViewList.Columns[0].Visible = false;
             dataGridViewList.Columns[1].Width = 200;
-
         }
         //buscar metodo
         private void buscar()
@@ -106,7 +94,6 @@ namespace WindowsFormsApp1
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
         }
-
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             //llamar al metodo buscar
@@ -124,18 +111,15 @@ namespace WindowsFormsApp1
             errorProvider1.Clear();
             
         }
-
         private void buttonNuevo_Click(object sender, EventArgs e)
         {
             //
 
         }
-
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
             this.Limpiar();
         }
-
         private void buttonLimpiar_Click_1(object sender, EventArgs e)
         {
             this.Limpiar();
@@ -150,7 +134,6 @@ namespace WindowsFormsApp1
         {
             MessageBox.Show(msg, "Control de Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
         private void buttonNuevo_Click_1(object sender, EventArgs e)
         {
             try
@@ -187,10 +170,7 @@ namespace WindowsFormsApp1
                 obj.PCantidad = Convert.ToInt32(numericCantidad.Value);
                 obj.PMarca = textBoxMarca.Text;
                 obj.PPrecio = Convert.ToDouble(numericPrecio.Value);
-
-                //DateTime prueba = new DateTime(dateTimePickerFecha.Value.Year, dateTimePickerFecha.Value.Month, dateTimePickerFecha.Value.Day);
                 obj.PFecha = dateTimePickerFecha.Value;
-                //Console.WriteLine(obj.PCodigo +" "+ obj.PFecha);
                 //generar instancia sql
                 AccesoDatos ds = new AccesoDatos();
                 respuesta = ds.Insertar(obj);
@@ -199,7 +179,6 @@ namespace WindowsFormsApp1
                     this.MensajeOk("Se inserto de forma correcta el registro");
                     this.Limpiar();
                     this.listar();
-
                 }
                 else
                 {
@@ -209,10 +188,8 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
-                
             }
         }
-
         private void buttonBorrar_Click(object sender, EventArgs e)
         {
             try
@@ -232,7 +209,6 @@ namespace WindowsFormsApp1
                     //enviar la info a la clase AccesoDatos
                     AccesoDatos ds = new AccesoDatos();
                     respuesta = ds.Eliminar(Convert.ToInt32(numericCodigo.Value));
-
                 }
                 if (respuesta.Equals("OK")) 
                 {
@@ -248,16 +224,12 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
-               
             }
-
         }
-
         private void dateTimePickerFecha_ValueChanged(object sender, EventArgs e)
         {
             dateTimePickerFecha.MaxDate = DateTime.Today;
         }
-
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             try
@@ -314,23 +286,18 @@ namespace WindowsFormsApp1
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
         }
-
         private void numericTipo_ValueChanged(object sender, EventArgs e)
         {
 
         }
-
         private void textBoxBuscar_DragEnter(object sender, DragEventArgs e)
         {
-            //
-            //this.buscar();
+            
         }
-
         private void labelMarca_Click(object sender, EventArgs e)
         {
 
         }
-
         private void labelDetalle_Click(object sender, EventArgs e)
         {
 
