@@ -235,6 +235,11 @@
             // 
             this.numericCantidad.AccessibleName = "numericCantidad";
             this.numericCantidad.Location = new System.Drawing.Point(53, 73);
+            this.numericCantidad.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numericCantidad.Name = "numericCantidad";
             this.numericCantidad.Size = new System.Drawing.Size(116, 20);
             this.numericCantidad.TabIndex = 26;
@@ -244,9 +249,15 @@
             // 
             this.numericCodigo.AccessibleName = "numericCodigo";
             this.numericCodigo.Location = new System.Drawing.Point(53, 7);
+            this.numericCodigo.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numericCodigo.Name = "numericCodigo";
             this.numericCodigo.Size = new System.Drawing.Size(116, 20);
             this.numericCodigo.TabIndex = 28;
+            this.numericCodigo.ValueChanged += new System.EventHandler(this.numericCodigo_ValueChanged);
             // 
             // textBoxMarca
             // 

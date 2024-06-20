@@ -35,6 +35,7 @@ namespace WindowsFormsApp1
             string prueba = dataGridViewList.CurrentRow.Cells["pCodigo"].Value.ToString();
             numericCodigo.Value = Convert.ToInt32(prueba);
             prueba = dataGridViewList.CurrentRow.Cells["pPrecio"].Value.ToString();
+            prueba = prueba.Replace(',', '.');
             textBoxPrecio.Text = prueba;
             prueba = dataGridViewList.CurrentRow.Cells["pCantidad"].Value.ToString();
             numericCantidad.Value = Convert.ToInt32(prueba);
@@ -140,7 +141,7 @@ namespace WindowsFormsApp1
             try
             {
                 string respuesta = "";
-                if (numericCodigo.Text == string.Empty)
+                if (numericCodigo.Text == "0")
                 { 
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(numericCodigo, "Ingrese el codigo");
@@ -345,6 +346,11 @@ namespace WindowsFormsApp1
         private void textBoxPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             unPunto(e, textBoxPrecio.Text);
+        }
+
+        private void numericCodigo_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
