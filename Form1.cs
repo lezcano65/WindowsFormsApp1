@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
+using System.Globalization;
 
 namespace WindowsFormsApp1
 {
@@ -34,7 +35,7 @@ namespace WindowsFormsApp1
             string prueba = dataGridViewList.CurrentRow.Cells["pCodigo"].Value.ToString();
             numericCodigo.Value = Convert.ToInt32(prueba);
             prueba = dataGridViewList.CurrentRow.Cells["pPrecio"].Value.ToString();
-            numericPrecio.Value = Convert.ToDecimal(prueba);
+            textBoxPrecio.Text = prueba;
             prueba = dataGridViewList.CurrentRow.Cells["pCantidad"].Value.ToString();
             numericCantidad.Value = Convert.ToInt32(prueba);
             textBoxDetalle.Text = dataGridViewList.CurrentRow.Cells["pDetalle"].Value.ToString();
@@ -65,7 +66,7 @@ namespace WindowsFormsApp1
                 //refenrecia a la clase datos sql
                 //datosSql ds = new datosSql();
                 AccesoDatos ds = new AccesoDatos();
-                dataGridViewList.DataSource = ds.listar();
+                dataGridViewList.DataSource = ds.Listar();
                 labelFilas.Text = "Numero de Registros: "+ Convert.ToString(dataGridViewList.Rows.Count-1 );
             }
             catch (Exception ex)
@@ -106,7 +107,7 @@ namespace WindowsFormsApp1
             textBoxMarca.Clear();
             numericCantidad.Value = 0;
             numericCodigo.Value = 0;
-            numericPrecio.Value = 0;
+            textBoxPrecio.Clear() ;
             textBoxBuscar.Focus();
             errorProvider1.Clear();
             
@@ -157,10 +158,10 @@ namespace WindowsFormsApp1
                     errorProvider1.SetError(textBoxMarca, "Ingrese la marca ");
                     return;
                 }
-                if (numericPrecio.Text == string.Empty)
+                if (textBoxPrecio.Text == string.Empty)
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
-                    errorProvider1.SetError(numericPrecio, "Ingrese el precio");
+                    errorProvider1.SetError(textBoxPrecio, "Ingrese el precio");
                     return;
                 }
                 // generar una instancia a clase producto
@@ -169,7 +170,7 @@ namespace WindowsFormsApp1
                 obj.PDetalle = textBoxDetalle.Text;
                 obj.PCantidad = Convert.ToInt32(numericCantidad.Value);
                 obj.PMarca = textBoxMarca.Text;
-                obj.PPrecio = Convert.ToDouble(numericPrecio.Value);
+                obj.PPrecio = textBoxPrecio.Text;
                 obj.PFecha = dateTimePickerFecha.Value;
                 //generar instancia sql
                 AccesoDatos ds = new AccesoDatos();
@@ -253,10 +254,10 @@ namespace WindowsFormsApp1
                     errorProvider1.SetError(textBoxMarca, "Ingrese la marca ");
                     return;
                 }
-                if (numericPrecio.Text == string.Empty)
+                if (textBoxPrecio.Text == string.Empty)
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
-                    errorProvider1.SetError(numericPrecio, "Ingrese el precio");
+                    errorProvider1.SetError(textBoxPrecio, "Ingrese el precio");
                     return;
                 }
                 // generar una instancia a clase producto
@@ -265,7 +266,7 @@ namespace WindowsFormsApp1
                 obj.PDetalle = textBoxDetalle.Text;
                 obj.PCantidad = Convert.ToInt32(numericCantidad.Value);
                 obj.PMarca = textBoxMarca.Text;
-                obj.PPrecio = Convert.ToDouble(numericPrecio.Value);
+                obj.PPrecio = textBoxPrecio.Text;
                 obj.PFecha = dateTimePickerFecha.Value;
                 //generar instancia sql
                 AccesoDatos ds = new AccesoDatos();
@@ -301,6 +302,49 @@ namespace WindowsFormsApp1
         private void labelDetalle_Click(object sender, EventArgs e)
         {
 
+        }
+        private void textBoxMarca_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        bool bandera = false;
+        public void unPunto(KeyPressEventArgs e, string cadena)
+        {
+            int contador = 0;
+            String Caracter = "";
+            for (int i = 0; i < cadena.Length; i++)
+            {
+                Caracter = cadena.Substring(i, 1);
+                if (Caracter == ".") contador++;
+            }
+            if (contador == 0)//no existe un punto
+            {
+                bandera = true;
+                if (e.KeyChar == '.'&& bandera)
+                {
+                    bandera= false;
+                    e.Handled = false;
+                }
+                else if (Char.IsDigit(e.KeyChar)) e.Handled = false;
+                else if (char.IsControl(e.KeyChar)) e.Handled= false;
+                else e.Handled = true;
+            }
+            else 
+            { 
+                bandera = false; 
+                e.Handled= true;
+                if (Char.IsDigit(e.KeyChar)) e.Handled = false;
+                else if (char.IsControl(e.KeyChar)) e.Handled = false;
+                else e.Handled = true;
+            }
+        }
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+                        
+        }
+        private void textBoxPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            unPunto(e, textBoxPrecio.Text);
         }
     }
 }

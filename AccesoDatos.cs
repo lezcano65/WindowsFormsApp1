@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
 
     internal class AccesoDatos
     {
-        public DataTable listar()
+        public DataTable Listar()
         {
             //leer  una secuencia de filas dentro de una talbla de sql
             SqlDataReader lista;
