@@ -275,7 +275,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 291);
+            this.ClientSize = new System.Drawing.Size(603, 210);
             this.Controls.Add(this.textBoxMarca);
             this.Controls.Add(this.numericCodigo);
             this.Controls.Add(this.numericCantidad);
