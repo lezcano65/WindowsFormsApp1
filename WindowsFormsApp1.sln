@@ -5,6 +5,12 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1.csproj", "{53C8DB2C-4905-4E10-9ABC-C08A1BB85DEB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{BF82912D-B930-4087-A5D2-7034F3B4654E}"
+	ProjectSection(SolutionItems) = preProject
+		Libraries\AccesoDatos.cs = Libraries\AccesoDatos.cs
+		Libraries\conexion.cs = Libraries\conexion.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
