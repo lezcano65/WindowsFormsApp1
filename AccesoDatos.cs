@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace WindowsFormsApp1
 {
 
-    internal class AccesoDatos
+    public class AccesoDatos
     {
         public DataTable Listar()
         {
@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
             try {
                 string query = "Select * from Producto";
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open(); 
                 lista = comando.ExecuteReader();
@@ -50,7 +50,7 @@ namespace WindowsFormsApp1
             {
                 string query = "Select * from Producto where pDetalle like '%' + '"+valor+"'+ '%' or pMarca like '%' + '"+valor+"'+ '%'";
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open();
                 lista = comando.ExecuteReader();
@@ -82,7 +82,7 @@ namespace WindowsFormsApp1
                     "'"+obj.PPrecio+"'," +
                     "'"+obj.PFecha.ToString("yyyy-MM-ddTHH:mm:ss") + "')";
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open();
                 //en 1 sola linea la exepcion
@@ -114,7 +114,7 @@ namespace WindowsFormsApp1
                     "'"+obj.PCantidad+"', pFecha = " +
                     "'" + obj.PFecha.ToString("yyyy-MM-ddTHH:mm:ss") + "' where  pCodigo = '"+obj.PCodigo+"'";
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open();
                 //en 1 sola linea la exepcion
@@ -141,7 +141,7 @@ namespace WindowsFormsApp1
             {
                 string query = "delete from Producto where pCodigo = '"+Id+"'";
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open();
                 //en 1 sola linea la exepcion

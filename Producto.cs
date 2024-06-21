@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    internal class Producto
+    public class Producto
     {
         int pCodigo;
         string pDetalle;
@@ -31,7 +31,7 @@ namespace WindowsFormsApp1
             this.PPrecio = precio;
             this.PFecha = fecha;
         }
-        public Producto() 
+        public Producto()
         {
             PCodigo = 0;
             PDetalle = "";
