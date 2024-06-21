@@ -117,3 +117,37 @@ ALTER DATABASE [aplicacionBD] SET  READ_WRITE
 GO
 
 
+
+
+
+
+/****** para crear la tabla  ******/
+ 
+ 
+USE [aplicacionBD]
+GO
+
+/****** Object:  Table [dbo].[Producto]    Script Date: 21/6/2024 16:04:46 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Producto](
+	[pCodigo] [int] NOT NULL,
+	[pDetalle] [varchar](255) NULL,
+	[pCantidad] [int] NULL,
+	[pMarca] [varchar](100) NULL,
+	[pPrecio] [numeric](18, 2) NULL,
+	[pFecha] [date] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[pCodigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [pDetalle] UNIQUE NONCLUSTERED 
+(
+	[pDetalle] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
