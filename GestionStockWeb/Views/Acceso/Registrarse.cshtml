@@ -1,0 +1,84 @@
+﻿@model GestionStockWeb.ViewModels.UsuarioVM;
+@{
+    Layout = Layout;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Registrarse</title>
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+    </head>
+    <body>
+        <div class="row mt-5 justify-content-center">
+            <div class="col-sm-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 bg-second-primary">
+                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-user"></i> Registrate</h6>
+                </div>
+                <div class="card-body">
+
+                    <form asp-controller="Acceso" asp-action="Registrarse" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <img id="imgFoto" src="https://st4.depositphotos.com/20524830/26252/i/450/depositphotos_262526576-stock-photo-user-icon-primitive-buttons-overcolor.jpg" class="rounded mx-auto d-block" style="width: 200px; height: 200px;">
+                            </div>
+                        </div>
+
+                        @* <input class="form-control mb-3" type="text" placeholder="Nombre" required asp-for="NombreU"/>
+
+                        <input class="form-control mb-3" type="text" placeholder="Contraseña" required asp-for="HashU"/>
+
+                        <input class="form-control mb-3" type="text" placeholder="Confirma contraseña" required asp-for="HashU2"/> *@
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="txtNombre">Nombre</label>
+                                @* <input class="form-control mb-3" type="text" placeholder="Nombre" required asp-for="NombreU" /> *@
+                                <input type="text" class="form-control form-control-sm input-validar" id="txtNombre" name="Nombre" required asp-for="NombreU"> 
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="txtClaveNueva">Nueva Contraseña</label>
+                                @* <input class="form-control mb-3" type="text" placeholder="Contraseña" required asp-for="HashU" /> *@
+                                <input type="password" class="form-control form-control-sm input-validar" id="txtClaveNueva" name="Clave Nueva" required asp-for="HashU">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="txtConfirmarClave">Confirmar Contraseña</label>
+                                @* <input class="form-control mb-3" type="text" placeholder="Confirma contraseña" required asp-for="Salt" /> *@
+                                <input type="password" class="form-control form-control-sm input-validar" id="txtConfirmarClave" name="Confirmar Clave" required asp-for="Salt"> 
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="d_grid gap-2 mb-3">
+                            <div class="col-sm-12">
+                                <button class="btn btn-primary" type="submit">Registrate</button>
+                            </div>
+                        </div>
+
+                     @*    @if (ViewData["Mensaje"] != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @ViewData["Mensaje"]
+                            </div>
+                        } *@
+
+                        ¿Ya tienes un usuario?<a asp-controller="Acceso" asp-action="Login">Login</a>
+
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+        <script src="~/vendor/jquery/jquery.min.js"></script>
+        <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
