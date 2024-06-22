@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-
     public class AccesoDatos
     {
         public DataTable Listar()
@@ -21,7 +20,7 @@ namespace WindowsFormsApp1
             //debemos conectarnos a la base de datos
             SqlConnection con = new SqlConnection();
             try {
-                string query = "Select * from Producto";
+                string query = "Select * from Productos";
                 //nos devuelve el string de conexion a sql
                 con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
@@ -48,7 +47,12 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "Select * from Producto where pDetalle like '%' + '"+valor+"'+ '%' or pMarca like '%' + '"+valor+"'+ '%'";
+                string query = "Select * from Productos where NombreP like '%' + '" + valor + "'+ '%'";// or pMarca like '%' + '"+valor+"'+ '%'";
+                bool success = int.TryParse(valor, out int number);
+                if (success)
+                {
+                    query += " or ProductoId like '%' + '" + number + "' + '%' or CategoriaFk like '%' + '" + number + "'+ '%'";
+                }
                 //nos devuelve el string de conexion a sql
                 con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
@@ -74,13 +78,11 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "Insert into Producto (pCodigo,pDetalle,pCantidad,pMarca,pPrecio,pFecha) values(" +
-                    "'" + obj.PCodigo + "'," +
-                    "'" +obj.PDetalle+"'," +
-                    "'"+obj.PCantidad + "'," +
-                    "'"+obj.PMarca+"'," +
-                    "'"+obj.PPrecio+"'," +
-                    "'"+obj.PFecha.ToString("yyyy-MM-ddTHH:mm:ss") + "')";
+                string query = "Insert into Productos (NombreP,Habilitado,CategoriaFk,CantidadP) values(" +
+                    "'" +obj.NombreP1 + "'," +
+                    "'"+obj.Habilitado1 + "'," +
+                    "'"+obj.CategoriaFk1 + "'," +
+                    "'"+obj.CantidadP1 + "')";
                 //nos devuelve el string de conexion a sql
                 con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
@@ -107,12 +109,13 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "Update Producto set pCodigo = '"+obj.PCodigo+"', pDetalle = " +
-                    "'"+obj.PDetalle+"', pMarca = " +
-                    "'"+obj.PMarca+"', pPrecio = " +
-                    "'"+obj.PPrecio+ "', pCantidad = " +
-                    "'"+obj.PCantidad+"', pFecha = " +
-                    "'" + obj.PFecha.ToString("yyyy-MM-ddTHH:mm:ss") + "' where  pCodigo = '"+obj.PCodigo+"'";
+                string query = "Update Productos set ProductoId = " +
+                    "'"+obj.ProductoId1 + "', NombreP1 = " +
+                    "'"+obj.NombreP1 + "', Habilitado = " +
+                    "'"+obj.Habilitado1 + "', CategoriaFk = " +
+                    "'"+obj.CategoriaFk1 + "', CantidadP = " + //obj.PrecioP1 = " +
+                    //"'"+obj.CategoriaFk1 + "', CantidadP = " +
+                    "'" + obj.CantidadP1 + "' where  ProductoId = '" + obj.ProductoId1 + "'";
                 //nos devuelve el string de conexion a sql
                 con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
@@ -139,7 +142,7 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "delete from Producto where pCodigo = '"+Id+"'";
+                string query = "delete from Productos where ProductoId = '" + Id+"'";
                 //nos devuelve el string de conexion a sql
                 con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);

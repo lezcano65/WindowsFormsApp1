@@ -117,35 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ButtonCerrar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAM5JREFUSEvt
-        lEEOwiAURHuEbtx4QvWoXbrzNDivGRJIkUIqxkVf8lPKn5mfFNLp5D8JIdxUF7/ughaPX+tI+FDBU7U7
-        BI21cPf2ZySaVcsqD+Glurq1gZ41gGd2qw5CG6A4hD33oD08gsFGyIaw9h70h0cwOgDWIa7j4REFpIfI
-        M10337QqBDkw8r1wUFj6WSA7k0MoaNwnUsDmQF3F29UFRgdAdltYew/6h2CwEYpXkT33oH0IQhugGB6h
-        Zw20DZFo7M8OJBz3uz75MdP0BiXC1QbfwJICAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="ButtonMax.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAANhJREFUSEvt
-        lTEKwkAQRXOCnMJjKdrkDHZip4WFKQQFMeD1LERE0ULj+zAbxMGQBQWFPHjFz8xoscls0hJFWZYpFrjD
-        wB271lLBs57VAppZY2otHopbPOEMh092rKVCz156NHPGwlo8FA84txgNsznuLXooirHFaDSrH7DoURG+
-        +gc6tJHFaDSLN4seigN0B9oUzWLfYssvwgFlHzjkzKKH4tdfU/HfX7KWXW4xGmYXWLvstK6vuMSpOcF3
-        61q10LdCzdau63DhHDFwwSYXjmY2+P7CafEkyQObg1vu2xuiVAAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="ButtonMin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAALlJREFUSEvt
-        lTsKwlAQRbOCLFOXYGspaGHsLPzgnqxcgoWIKFjFc/F2Y56MpbwDBzKZ3BlI8V5TSdH3fYtbPGMWZTbY
-        elyE5gHvOMdJ0gU+cOdxEZpXXLpMQ7bDi8sITTF1mUZZDXAZURPqgrpgGGU1wGVETfijBTyPcfbFkT//
-        acHp/arI0Z/nF2RRVgNcRujpsOtcpiG7wuJhp+P6iWv89L9LKqNs8bjWhbPHG2ZRRpfV8IVTiTTNCzYW
-        JfVIkGgGAAAAAElFTkSuQmCC
-</value>
-  </data>
 </root>

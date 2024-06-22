@@ -8,41 +8,39 @@ namespace WindowsFormsApp1
 {
     public class Producto
     {
-        int pCodigo;
-        string pDetalle;
-        int pCantidad;
-        string pMarca;
-        string pPrecio;
-        DateTime pFecha;
-
-        public int PCodigo { get => pCodigo; set => pCodigo = value; }
-        public string PDetalle { get => pDetalle; set => pDetalle = value; }
-        public int PCantidad { get => pCantidad; set => pCantidad = value; }
-        public string PMarca { get => pMarca; set => pMarca = value; }
-        public string PPrecio { get => pPrecio; set => pPrecio = value; }
-        public DateTime PFecha { get => pFecha; set => pFecha = value; }
-
-        public Producto(int codigo, string detalle, int tipo, string marca, string precio, DateTime fecha)
+        int ProductoId;
+        string NombreP;
+        bool Habilitado;
+        int CategoriaFk;
+        int CantidadP;
+        string PrecioP;
+        public int ProductoId1 { get => ProductoId; set => ProductoId = value; }
+        public string NombreP1 { get => NombreP; set => NombreP = value; }
+        public bool Habilitado1 { get => Habilitado; set => Habilitado = value; }
+        public int CategoriaFk1 { get => CategoriaFk; set => CategoriaFk = value; }
+        public int CantidadP1 { get => CantidadP; set => CantidadP = value; }
+        public string PrecioP1 { get => PrecioP; set => PrecioP = value; }
+        public Producto(int codigo, string nombre, bool tipo, int categoria, int cantidad,string precio)
         {
-            this.PCodigo = codigo;
-            this.PDetalle = detalle;
-            this.PCantidad = tipo;
-            this.PMarca = marca;
-            this.PPrecio = precio;
-            this.PFecha = fecha;
+            this.ProductoId = codigo;
+            this.NombreP = nombre;
+            this.Habilitado = tipo;
+            this.CategoriaFk = categoria;
+            this.CantidadP = cantidad;
+            this.PrecioP = precio;
         }
         public Producto()
         {
-            PCodigo = 0;
-            PDetalle = "";
-            PCantidad = 0;
-            PMarca = "";
-            PPrecio = "";
-            PFecha = DateTime.Today;
+            ProductoId = 0;
+            NombreP = "";
+            Habilitado = false;
+            CategoriaFk = 0;
+            CantidadP = 0;
+            PrecioP = "";
         }
         public override string ToString()
         {
-            return PCodigo + "-" + PDetalle;
+            return ProductoId + "-" + NombreP;
         }
     }
 }

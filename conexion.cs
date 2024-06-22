@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         public static Conexion con = null;
         public Conexion() 
         { 
-            this.Base = "aplicacionBD";
+            this.Base = "StockBD";
             this.Servidor = "DESKTOP-0K564JG";
             this.Usuario = "sa";
             this.Clave = "contrasenia1";
