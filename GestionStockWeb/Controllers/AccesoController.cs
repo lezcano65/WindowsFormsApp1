@@ -14,13 +14,16 @@ namespace GestionStockWeb.Controllers
         {
             _dbContext = stockDBContext;
         }
+
+
+        //REGISTRARSE
         [HttpGet]
         public IActionResult registrarse()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Registrar(UsuarioVM modelo)
+        public async Task<IActionResult> Registrarse(UsuarioVM modelo)
         {
             //if (modelo.HashU != modelo.Salt)
             //{
@@ -45,5 +48,29 @@ namespace GestionStockWeb.Controllers
             //ViewData["Mensaje"] = "no se pudo crear el usuario";
             return View();
         }
+
+        //LOGIN
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM modelo)
+        {
+            Usuario?usuario_encontrado = await _dbContext.Usuarios
+                                        .Where(u=>
+                                               u.NombreU==modelo.NombreU&&
+                                               u.HashU==modelo.HashU
+                                                ).FirstOrDefaultAsync();
+            if ( usuario_encontrado == null)
+            {
+                ViewData["Mensaje"] = "no encontado";
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
+
+        }
+
     }
 }
