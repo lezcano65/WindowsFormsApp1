@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace WindowsFormsApp1
 {
@@ -70,6 +71,53 @@ namespace WindowsFormsApp1
                 // por estar dentro de un try en TEORIA no hace falta
                 if (con.State == ConnectionState.Open) con.Close();
             }
+        }
+        public string NombreDuplicado(Producto valor)
+        {
+            string respuesta = "";
+            //SqlDataReader lista;
+            //DataTable Tabla = new DataTable();
+            //debemos conectarnos a la base de datos
+            //SqlConnection con = new SqlConnection();
+            try
+            {
+                string query = "Select * from Productos where NombreP = '" + valor.NombreP1;
+                //con = Conexion.CrearInstancia().CrearConexion();
+                using (SqlConnection con = Conexion.CrearInstancia().CrearConexion())
+                {
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@NombreP", valor.NombreP1);
+
+                    try
+                    {
+                        con.Open();
+                        int count = (int)cmd.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            return "El producto ya existe y no se puede crear.";
+                            Actualizar(valor);
+                        }
+                        else
+                        {
+                            return "El producto no existe. Se puede crear.";
+                            Insertar(valor);
+
+                            // Aquí puedes agregar la lógica para crear el producto si es necesario
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                //SqlCommand comando = new SqlCommand(query, con);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return respuesta;
         }
         public string Insertar(Producto obj)
         {

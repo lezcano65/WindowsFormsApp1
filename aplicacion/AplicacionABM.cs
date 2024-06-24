@@ -135,7 +135,8 @@ namespace ABMaplicacion
         }
         private void textBoxPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            bool flag = false;
+            control.Numero(e,textBoxCantidad.Text,flag);
         }
         private void ButtonMin_Click(object sender, EventArgs e)
         {
