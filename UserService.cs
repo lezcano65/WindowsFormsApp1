@@ -1,58 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BCrypt.Net;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+
 
 namespace WindowsFormsApp1
 {
     public class UserService
     {
-        public string HashPassword(string password)
+        // Generar un salt seguro
+        public static byte[] GenerateSalt(int size = 128)
         {
-            return BCrypt.Net.BCrypt.HashPassword(password);
+            byte[] salt = new byte[size / 8];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+            return salt;
         }
 
-        public bool VerifyPassword(string password, string hashedPassword)
+        // Crear un hash de la contraseña con el salt proporcionado
+        public static string HashPassword(string password, byte[] salt)
         {
-            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            return hashed;
+        }
+
+        // Verificar que el hash de la contraseña coincide con el hash almacenado
+        public static bool VerifyPassword(string password, string hashedPassword, byte[] salt)
+        {
+            string hashOfInput = HashPassword(password, salt);
+            return hashOfInput == hashedPassword;
         }
     }
-    /*
-    public class HashController : Controller
-    {
-        private readonly UserService _userService;
-
-        public AccountController()
-        {
-            _userService = new UserService();
-        }
-
-        public IActionResult Register(string username, string password)
-        {
-            string hashedPassword = _userService.HashPassword(password);
-
-            // Guarda el usuario y el hashedPassword en la base de datos
-            // Código para guardar en la base de datos aquí
-
-            return Ok("registrado exitosamente");
-        }
-
-        public IActionResult Login(string username, string password)
-        {
-            // Recuperar el usuario de la base de datos aquí
-            string hashedPasswordFromDb = ""; // Recuperar de la base de datos
-
-            if (_userService.VerifyPassword(password, hashedPasswordFromDb))
-            {
-                return Ok("Inicio de sesión exitoso");
-            }
-            else
-            {
-                return BadRequest("pass incorecta");
-            }
-        }
-    }
-    */
 }
