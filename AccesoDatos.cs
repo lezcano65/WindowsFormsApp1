@@ -78,11 +78,12 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "Insert into Productos (NombreP,Habilitado,CategoriaFk,CantidadP) values(" +
+                string query = "Insert into Productos (NombreP,Habilitado,CategoriaFk,CategoriaFkNavigationCategoriaId,CantidadP) values(" +
                     "'" +obj.NombreP1 + "'," +
                     "'"+obj.Habilitado1 + "'," +
                     "'"+obj.CategoriaFk1 + "'," +
-                    "'"+obj.CantidadP1 + "')";
+                    "'" + obj.CategoriaFk1 + "'," +
+                    "'" +obj.CantidadP1 + "')";
                 //nos devuelve el string de conexion a sql
                 con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
@@ -109,12 +110,11 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "Update Productos set ProductoId = " +
-                    "'"+obj.ProductoId1 + "', NombreP1 = " +
+                string query = "Update Productos set NombreP = " +
                     "'"+obj.NombreP1 + "', Habilitado = " +
-                    "'"+obj.Habilitado1 + "', CategoriaFk = " +
-                    "'"+obj.CategoriaFk1 + "', CantidadP = " + //obj.PrecioP1 = " +
-                    //"'"+obj.CategoriaFk1 + "', CantidadP = " +
+                    "'" +obj.Habilitado1 + "', CategoriaFkNavigationCategoriaId = "+
+                    "'" + obj.CategoriaFk1 + "', CategoriaFk = " +
+                    "'" +obj.CategoriaFk1 + "', CantidadP = " + 
                     "'" + obj.CantidadP1 + "' where  ProductoId = '" + obj.ProductoId1 + "'";
                 //nos devuelve el string de conexion a sql
                 con = Conexion.CrearInstancia().CrearConexion();
