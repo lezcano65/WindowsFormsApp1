@@ -29,20 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ComboBox textBoxHabilitado;
-            System.Windows.Forms.ComboBox textBoxCategoriaFk;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AplicacionABM));
+            this.textBoxHabilitado = new System.Windows.Forms.ComboBox();
+            this.textBoxCategoriaFk = new System.Windows.Forms.ComboBox();
             this.buttonNuevo = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonBorrar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
-            this.textBoxDetalle = new System.Windows.Forms.TextBox();
-            this.dateTimePickerFecha = new System.Windows.Forms.DateTimePicker();
             this.dataGridViewList = new System.Windows.Forms.DataGridView();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
@@ -53,11 +51,6 @@
             this.textBoxMarca = new System.Windows.Forms.TextBox();
             this.textBoxPrecio = new System.Windows.Forms.TextBox();
             this.pContainerUsuario = new System.Windows.Forms.Panel();
-            this.ButtonCerrar = new WindowsFormsApp1.aplicacion.RJButton();
-            this.ButtonMax = new WindowsFormsApp1.aplicacion.RJButton();
-            this.ButtonMin = new WindowsFormsApp1.aplicacion.RJButton();
-            this.rjButton2 = new WindowsFormsApp1.aplicacion.RJButton();
-            this.rjButton1 = new WindowsFormsApp1.aplicacion.RJButton();
             this.lblCategoriaFk = new System.Windows.Forms.Label();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.lblNombreP = new System.Windows.Forms.Label();
@@ -79,8 +72,12 @@
             this.pbCantidad = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbProductoId = new System.Windows.Forms.PictureBox();
-            textBoxHabilitado = new System.Windows.Forms.ComboBox();
-            textBoxCategoriaFk = new System.Windows.Forms.ComboBox();
+            this.ButtonCerrar = new WindowsFormsApp1.aplicacion.RJButton();
+            this.ButtonMax = new WindowsFormsApp1.aplicacion.RJButton();
+            this.ButtonMin = new WindowsFormsApp1.aplicacion.RJButton();
+            this.rjButton2 = new WindowsFormsApp1.aplicacion.RJButton();
+            this.rjButton1 = new WindowsFormsApp1.aplicacion.RJButton();
+            this.textBoxDetalle = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidad)).BeginInit();
@@ -102,48 +99,42 @@
             // 
             // textBoxHabilitado
             // 
-            textBoxHabilitado.AccessibleName = "textBoxHabilitado";
-            textBoxHabilitado.BackColor = System.Drawing.Color.Wheat;
-            textBoxHabilitado.Cursor = System.Windows.Forms.Cursors.Hand;
-            textBoxHabilitado.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            textBoxHabilitado.Font = new System.Drawing.Font("OCR A Extended", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            textBoxHabilitado.FormattingEnabled = true;
-            textBoxHabilitado.Items.AddRange(new object[] {
+            this.textBoxHabilitado.AccessibleName = "textBoxHabilitado";
+            this.textBoxHabilitado.BackColor = System.Drawing.Color.Wheat;
+            this.textBoxHabilitado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.textBoxHabilitado.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.textBoxHabilitado.Font = new System.Drawing.Font("OCR A Extended", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxHabilitado.FormattingEnabled = true;
+            this.textBoxHabilitado.Items.AddRange(new object[] {
             "True",
             "False"});
-            textBoxHabilitado.Location = new System.Drawing.Point(342, 214);
-            textBoxHabilitado.Margin = new System.Windows.Forms.Padding(0);
-            textBoxHabilitado.Name = "textBoxHabilitado";
-            textBoxHabilitado.Size = new System.Drawing.Size(86, 25);
-            textBoxHabilitado.TabIndex = 4;
-            textBoxHabilitado.Tag = "Habilitado";
-            textBoxHabilitado.SelectedIndexChanged += new System.EventHandler(this.textBoxHabilitado_SelectedIndexChanged);
-            textBoxHabilitado.Enter += new System.EventHandler(this.comboEnter);
-            textBoxHabilitado.Leave += new System.EventHandler(this.ComboLeave);
+            this.textBoxHabilitado.Location = new System.Drawing.Point(342, 214);
+            this.textBoxHabilitado.Margin = new System.Windows.Forms.Padding(0);
+            this.textBoxHabilitado.Name = "textBoxHabilitado";
+            this.textBoxHabilitado.Size = new System.Drawing.Size(86, 25);
+            this.textBoxHabilitado.TabIndex = 4;
+            this.textBoxHabilitado.Tag = "Habilitado";
+            this.textBoxHabilitado.SelectedIndexChanged += new System.EventHandler(this.textBoxHabilitado_SelectedIndexChanged);
+            this.textBoxHabilitado.Enter += new System.EventHandler(this.comboEnter);
+            this.textBoxHabilitado.Leave += new System.EventHandler(this.ComboLeave);
             // 
             // textBoxCategoriaFk
             // 
-            textBoxCategoriaFk.AccessibleName = "textBoxCategoriaFk";
-            textBoxCategoriaFk.BackColor = System.Drawing.Color.Wheat;
-            textBoxCategoriaFk.Cursor = System.Windows.Forms.Cursors.Hand;
-            textBoxCategoriaFk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            textBoxCategoriaFk.Font = new System.Drawing.Font("OCR A Extended", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            textBoxCategoriaFk.FormattingEnabled = true;
-            textBoxCategoriaFk.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "8"});
-            textBoxCategoriaFk.Location = new System.Drawing.Point(461, 214);
-            textBoxCategoriaFk.Margin = new System.Windows.Forms.Padding(0);
-            textBoxCategoriaFk.Name = "textBoxCategoriaFk";
-            textBoxCategoriaFk.Size = new System.Drawing.Size(106, 25);
-            textBoxCategoriaFk.TabIndex = 4;
-            textBoxCategoriaFk.Tag = "CategoriaFk";
-            textBoxCategoriaFk.SelectedIndexChanged += new System.EventHandler(this.textBoxCategoriaFk_SelectedIndexChanged);
-            textBoxCategoriaFk.Enter += new System.EventHandler(this.comboEnter);
-            textBoxCategoriaFk.Leave += new System.EventHandler(this.ComboLeave);
+            this.textBoxCategoriaFk.AccessibleName = "textBoxCategoriaFk";
+            this.textBoxCategoriaFk.BackColor = System.Drawing.Color.Wheat;
+            this.textBoxCategoriaFk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.textBoxCategoriaFk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.textBoxCategoriaFk.Font = new System.Drawing.Font("OCR A Extended", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxCategoriaFk.FormattingEnabled = true;
+            this.textBoxCategoriaFk.Location = new System.Drawing.Point(461, 214);
+            this.textBoxCategoriaFk.Margin = new System.Windows.Forms.Padding(0);
+            this.textBoxCategoriaFk.Name = "textBoxCategoriaFk";
+            this.textBoxCategoriaFk.Size = new System.Drawing.Size(106, 25);
+            this.textBoxCategoriaFk.TabIndex = 4;
+            this.textBoxCategoriaFk.Tag = "CategoriaFk";
+            this.textBoxCategoriaFk.SelectedIndexChanged += new System.EventHandler(this.textBoxCategoriaFk_SelectedIndexChanged);
+            this.textBoxCategoriaFk.Enter += new System.EventHandler(this.comboEnter);
+            this.textBoxCategoriaFk.Leave += new System.EventHandler(this.ComboLeave);
             // 
             // buttonNuevo
             // 
@@ -189,78 +180,53 @@
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click_1);
             // 
-            // textBoxDetalle
-            // 
-            this.textBoxDetalle.AccessibleName = "textBoxDetalle";
-            this.textBoxDetalle.BackColor = System.Drawing.Color.Wheat;
-            this.textBoxDetalle.Location = new System.Drawing.Point(342, 251);
-            this.textBoxDetalle.Name = "textBoxDetalle";
-            this.textBoxDetalle.Size = new System.Drawing.Size(75, 20);
-            this.textBoxDetalle.TabIndex = 14;
-            this.textBoxDetalle.TextChanged += new System.EventHandler(this.textBoxDetalle_TextChanged);
-            // 
-            // dateTimePickerFecha
-            // 
-            this.dateTimePickerFecha.AccessibleName = "dateTimePickerFecha";
-            this.dateTimePickerFecha.CalendarMonthBackground = System.Drawing.Color.Wheat;
-            this.dateTimePickerFecha.CustomFormat = "";
-            this.dateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFecha.Location = new System.Drawing.Point(432, 11);
-            this.dateTimePickerFecha.MaxDate = new System.DateTime(2024, 6, 15, 15, 56, 27, 0);
-            this.dateTimePickerFecha.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
-            this.dateTimePickerFecha.Name = "dateTimePickerFecha";
-            this.dateTimePickerFecha.Size = new System.Drawing.Size(116, 20);
-            this.dateTimePickerFecha.TabIndex = 18;
-            this.dateTimePickerFecha.Value = new System.DateTime(2024, 6, 15, 0, 0, 0, 0);
-            this.dateTimePickerFecha.ValueChanged += new System.EventHandler(this.dateTimePickerFecha_ValueChanged);
-            // 
             // dataGridViewList
             // 
             this.dataGridViewList.AccessibleName = "dataGridViewList";
             this.dataGridViewList.AllowUserToAddRows = false;
             this.dataGridViewList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Wheat;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Wheat;
-            this.dataGridViewList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Wheat;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Wheat;
+            this.dataGridViewList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewList.BackgroundColor = System.Drawing.Color.Wheat;
             this.dataGridViewList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridViewList.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridViewList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Wheat;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Wheat;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewList.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Wheat;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewList.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Wheat;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewList.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewList.EnableHeadersVisualStyles = false;
             this.dataGridViewList.GridColor = System.Drawing.Color.Wheat;
             this.dataGridViewList.Location = new System.Drawing.Point(7, 35);
             this.dataGridViewList.MultiSelect = false;
             this.dataGridViewList.Name = "dataGridViewList";
             this.dataGridViewList.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Wheat;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Wheat;
-            this.dataGridViewList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.Wheat;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewList.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.Wheat;
+            this.dataGridViewList.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewList.Size = new System.Drawing.Size(700, 111);
             this.dataGridViewList.TabIndex = 21;
@@ -378,9 +344,9 @@
             this.pContainerUsuario.Controls.Add(this.buttonBorrar);
             this.pContainerUsuario.Controls.Add(this.buttonLimpiar);
             this.pContainerUsuario.Controls.Add(this.dataGridViewList);
-            this.pContainerUsuario.Controls.Add(textBoxCategoriaFk);
+            this.pContainerUsuario.Controls.Add(this.textBoxCategoriaFk);
             this.pContainerUsuario.Controls.Add(this.numericCantidad);
-            this.pContainerUsuario.Controls.Add(textBoxHabilitado);
+            this.pContainerUsuario.Controls.Add(this.textBoxHabilitado);
             this.pContainerUsuario.Controls.Add(this.textBoxDetalle);
             this.pContainerUsuario.Controls.Add(this.ButtonCerrar);
             this.pContainerUsuario.Controls.Add(this.ButtonMax);
@@ -388,7 +354,6 @@
             this.pContainerUsuario.Controls.Add(this.rjButton2);
             this.pContainerUsuario.Controls.Add(this.rjButton1);
             this.pContainerUsuario.Controls.Add(this.lblCategoriaFk);
-            this.pContainerUsuario.Controls.Add(this.dateTimePickerFecha);
             this.pContainerUsuario.Controls.Add(this.lblBuscar);
             this.pContainerUsuario.Controls.Add(this.lblNombreP);
             this.pContainerUsuario.Controls.Add(this.lblHabilitado);
@@ -415,113 +380,6 @@
             this.pContainerUsuario.Size = new System.Drawing.Size(719, 294);
             this.pContainerUsuario.TabIndex = 31;
             this.pContainerUsuario.Paint += new System.Windows.Forms.PaintEventHandler(this.pContainerUsuario_Paint);
-            // 
-            // ButtonCerrar
-            // 
-            this.ButtonCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCerrar.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonCerrar.BackgroudColor = System.Drawing.Color.Transparent;
-            this.ButtonCerrar.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.ButtonCerrar.BorderRadius = 18;
-            this.ButtonCerrar.BorderSize = 0;
-            this.ButtonCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonCerrar.FlatAppearance.BorderSize = 0;
-            this.ButtonCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ButtonCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.ButtonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonCerrar.ForeColor = System.Drawing.Color.White;
-            this.ButtonCerrar.Image = ((System.Drawing.Image)(resources.GetObject("ButtonCerrar.Image")));
-            this.ButtonCerrar.Location = new System.Drawing.Point(669, 0);
-            this.ButtonCerrar.Name = "ButtonCerrar";
-            this.ButtonCerrar.Size = new System.Drawing.Size(50, 35);
-            this.ButtonCerrar.TabIndex = 3;
-            this.ButtonCerrar.TextColor = System.Drawing.Color.White;
-            this.ButtonCerrar.UseVisualStyleBackColor = false;
-            this.ButtonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
-            // 
-            // ButtonMax
-            // 
-            this.ButtonMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonMax.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonMax.BackgroudColor = System.Drawing.Color.Transparent;
-            this.ButtonMax.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.ButtonMax.BorderRadius = 18;
-            this.ButtonMax.BorderSize = 0;
-            this.ButtonMax.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonMax.FlatAppearance.BorderSize = 0;
-            this.ButtonMax.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.ButtonMax.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.ButtonMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonMax.ForeColor = System.Drawing.Color.White;
-            this.ButtonMax.Image = ((System.Drawing.Image)(resources.GetObject("ButtonMax.Image")));
-            this.ButtonMax.Location = new System.Drawing.Point(617, 0);
-            this.ButtonMax.Name = "ButtonMax";
-            this.ButtonMax.Size = new System.Drawing.Size(50, 35);
-            this.ButtonMax.TabIndex = 3;
-            this.ButtonMax.TextColor = System.Drawing.Color.White;
-            this.ButtonMax.UseVisualStyleBackColor = false;
-            this.ButtonMax.Click += new System.EventHandler(this.ButtonMax_Click);
-            // 
-            // ButtonMin
-            // 
-            this.ButtonMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonMin.BackColor = System.Drawing.Color.Transparent;
-            this.ButtonMin.BackgroudColor = System.Drawing.Color.Transparent;
-            this.ButtonMin.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.ButtonMin.BorderRadius = 18;
-            this.ButtonMin.BorderSize = 0;
-            this.ButtonMin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonMin.FlatAppearance.BorderSize = 0;
-            this.ButtonMin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.ButtonMin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.ButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonMin.ForeColor = System.Drawing.Color.White;
-            this.ButtonMin.Image = ((System.Drawing.Image)(resources.GetObject("ButtonMin.Image")));
-            this.ButtonMin.Location = new System.Drawing.Point(563, 0);
-            this.ButtonMin.Name = "ButtonMin";
-            this.ButtonMin.Size = new System.Drawing.Size(50, 35);
-            this.ButtonMin.TabIndex = 3;
-            this.ButtonMin.TextColor = System.Drawing.Color.White;
-            this.ButtonMin.UseVisualStyleBackColor = false;
-            this.ButtonMin.Click += new System.EventHandler(this.ButtonMin_Click);
-            // 
-            // rjButton2
-            // 
-            this.rjButton2.BackColor = System.Drawing.Color.Crimson;
-            this.rjButton2.BackgroudColor = System.Drawing.Color.Crimson;
-            this.rjButton2.BorderColor = System.Drawing.Color.Transparent;
-            this.rjButton2.BorderRadius = 19;
-            this.rjButton2.BorderSize = 0;
-            this.rjButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rjButton2.FlatAppearance.BorderSize = 0;
-            this.rjButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton2.ForeColor = System.Drawing.Color.White;
-            this.rjButton2.Location = new System.Drawing.Point(136, 258);
-            this.rjButton2.Name = "rjButton2";
-            this.rjButton2.Size = new System.Drawing.Size(111, 28);
-            this.rjButton2.TabIndex = 2;
-            this.rjButton2.Text = "mostrar clave";
-            this.rjButton2.TextColor = System.Drawing.Color.White;
-            this.rjButton2.UseVisualStyleBackColor = false;
-            // 
-            // rjButton1
-            // 
-            this.rjButton1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.rjButton1.BackgroudColor = System.Drawing.Color.MidnightBlue;
-            this.rjButton1.BorderColor = System.Drawing.Color.Transparent;
-            this.rjButton1.BorderRadius = 19;
-            this.rjButton1.BorderSize = 0;
-            this.rjButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rjButton1.FlatAppearance.BorderSize = 0;
-            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton1.ForeColor = System.Drawing.Color.White;
-            this.rjButton1.Location = new System.Drawing.Point(3, 258);
-            this.rjButton1.Name = "rjButton1";
-            this.rjButton1.Size = new System.Drawing.Size(111, 28);
-            this.rjButton1.TabIndex = 2;
-            this.rjButton1.Text = "ingresar";
-            this.rjButton1.TextColor = System.Drawing.Color.White;
-            this.rjButton1.UseVisualStyleBackColor = false;
             // 
             // lblCategoriaFk
             // 
@@ -765,6 +623,123 @@
             this.pbProductoId.TabStop = false;
             this.pbProductoId.Tag = "ProductoId";
             // 
+            // ButtonCerrar
+            // 
+            this.ButtonCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonCerrar.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonCerrar.BackgroudColor = System.Drawing.Color.Transparent;
+            this.ButtonCerrar.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.ButtonCerrar.BorderRadius = 18;
+            this.ButtonCerrar.BorderSize = 0;
+            this.ButtonCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonCerrar.FlatAppearance.BorderSize = 0;
+            this.ButtonCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.ButtonCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.ButtonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonCerrar.ForeColor = System.Drawing.Color.White;
+            this.ButtonCerrar.Image = ((System.Drawing.Image)(resources.GetObject("ButtonCerrar.Image")));
+            this.ButtonCerrar.Location = new System.Drawing.Point(669, 0);
+            this.ButtonCerrar.Name = "ButtonCerrar";
+            this.ButtonCerrar.Size = new System.Drawing.Size(50, 35);
+            this.ButtonCerrar.TabIndex = 3;
+            this.ButtonCerrar.TextColor = System.Drawing.Color.White;
+            this.ButtonCerrar.UseVisualStyleBackColor = false;
+            this.ButtonCerrar.Click += new System.EventHandler(this.ButtonCerrar_Click);
+            // 
+            // ButtonMax
+            // 
+            this.ButtonMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonMax.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonMax.BackgroudColor = System.Drawing.Color.Transparent;
+            this.ButtonMax.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.ButtonMax.BorderRadius = 18;
+            this.ButtonMax.BorderSize = 0;
+            this.ButtonMax.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonMax.FlatAppearance.BorderSize = 0;
+            this.ButtonMax.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.ButtonMax.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.ButtonMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonMax.ForeColor = System.Drawing.Color.White;
+            this.ButtonMax.Image = ((System.Drawing.Image)(resources.GetObject("ButtonMax.Image")));
+            this.ButtonMax.Location = new System.Drawing.Point(617, 0);
+            this.ButtonMax.Name = "ButtonMax";
+            this.ButtonMax.Size = new System.Drawing.Size(50, 35);
+            this.ButtonMax.TabIndex = 3;
+            this.ButtonMax.TextColor = System.Drawing.Color.White;
+            this.ButtonMax.UseVisualStyleBackColor = false;
+            this.ButtonMax.Click += new System.EventHandler(this.ButtonMax_Click);
+            // 
+            // ButtonMin
+            // 
+            this.ButtonMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonMin.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonMin.BackgroudColor = System.Drawing.Color.Transparent;
+            this.ButtonMin.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.ButtonMin.BorderRadius = 18;
+            this.ButtonMin.BorderSize = 0;
+            this.ButtonMin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonMin.FlatAppearance.BorderSize = 0;
+            this.ButtonMin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.ButtonMin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.ButtonMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonMin.ForeColor = System.Drawing.Color.White;
+            this.ButtonMin.Image = ((System.Drawing.Image)(resources.GetObject("ButtonMin.Image")));
+            this.ButtonMin.Location = new System.Drawing.Point(563, 0);
+            this.ButtonMin.Name = "ButtonMin";
+            this.ButtonMin.Size = new System.Drawing.Size(50, 35);
+            this.ButtonMin.TabIndex = 3;
+            this.ButtonMin.TextColor = System.Drawing.Color.White;
+            this.ButtonMin.UseVisualStyleBackColor = false;
+            this.ButtonMin.Click += new System.EventHandler(this.ButtonMin_Click);
+            // 
+            // rjButton2
+            // 
+            this.rjButton2.BackColor = System.Drawing.Color.Crimson;
+            this.rjButton2.BackgroudColor = System.Drawing.Color.Crimson;
+            this.rjButton2.BorderColor = System.Drawing.Color.Transparent;
+            this.rjButton2.BorderRadius = 19;
+            this.rjButton2.BorderSize = 0;
+            this.rjButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rjButton2.FlatAppearance.BorderSize = 0;
+            this.rjButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton2.ForeColor = System.Drawing.Color.White;
+            this.rjButton2.Location = new System.Drawing.Point(136, 258);
+            this.rjButton2.Name = "rjButton2";
+            this.rjButton2.Size = new System.Drawing.Size(111, 28);
+            this.rjButton2.TabIndex = 2;
+            this.rjButton2.Text = "mostrar clave";
+            this.rjButton2.TextColor = System.Drawing.Color.White;
+            this.rjButton2.UseVisualStyleBackColor = false;
+            // 
+            // rjButton1
+            // 
+            this.rjButton1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.rjButton1.BackgroudColor = System.Drawing.Color.MidnightBlue;
+            this.rjButton1.BorderColor = System.Drawing.Color.Transparent;
+            this.rjButton1.BorderRadius = 19;
+            this.rjButton1.BorderSize = 0;
+            this.rjButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rjButton1.FlatAppearance.BorderSize = 0;
+            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton1.ForeColor = System.Drawing.Color.White;
+            this.rjButton1.Location = new System.Drawing.Point(3, 258);
+            this.rjButton1.Name = "rjButton1";
+            this.rjButton1.Size = new System.Drawing.Size(111, 28);
+            this.rjButton1.TabIndex = 2;
+            this.rjButton1.Text = "ingresar";
+            this.rjButton1.TextColor = System.Drawing.Color.White;
+            this.rjButton1.UseVisualStyleBackColor = false;
+            // 
+            // textBoxDetalle
+            // 
+            this.textBoxDetalle.AccessibleName = "textBoxDetalle";
+            this.textBoxDetalle.BackColor = System.Drawing.Color.Wheat;
+            this.textBoxDetalle.Location = new System.Drawing.Point(268, 263);
+            this.textBoxDetalle.Name = "textBoxDetalle";
+            this.textBoxDetalle.Size = new System.Drawing.Size(75, 20);
+            this.textBoxDetalle.TabIndex = 14;
+            this.textBoxDetalle.TextChanged += new System.EventHandler(this.textBoxDetalle_TextChanged);
+            // 
             // AplicacionABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -807,8 +782,6 @@
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonBorrar;
         private System.Windows.Forms.Button buttonLimpiar;
-        private System.Windows.Forms.TextBox textBoxDetalle;
-        private System.Windows.Forms.DateTimePicker dateTimePickerFecha;
         private System.Windows.Forms.DataGridView dataGridViewList;
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.TextBox textBoxBuscar;
@@ -845,6 +818,9 @@
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pbBuscar;
+        private System.Windows.Forms.ComboBox textBoxHabilitado;
+        private System.Windows.Forms.ComboBox textBoxCategoriaFk;
+        private System.Windows.Forms.TextBox textBoxDetalle;
     }
 }
 

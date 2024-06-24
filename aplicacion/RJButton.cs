@@ -15,6 +15,7 @@ namespace WindowsFormsApp1.aplicacion
         private int borderSize = 0;
         private int borderRadius = 40;
         private Color borderColor = Color.PaleVioletRed;
+
         [Category("RJ Code Advance")]
         public int BorderSize
         {

@@ -8,6 +8,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace WindowsFormsApp1.business
 {
@@ -50,7 +52,7 @@ namespace WindowsFormsApp1.business
                 else e.Handled = true;
             }
         }
-        public static void comboEnter(object sender,EventArgs e,Panel Container)
+        public static void comboEnter(object sender, EventArgs e, Panel Container)
         {
             ComboBox txt = sender as ComboBox;
             foreach (Control ctrl in Container.Controls)
@@ -84,7 +86,7 @@ namespace WindowsFormsApp1.business
                 }
             }
         }
-        public static void DejarCombo(object sender, EventArgs e,Panel Container)
+        public static void DejarCombo(object sender, EventArgs e, Panel Container)
         {
             ComboBox txt = sender as ComboBox;
             foreach (Control ctrl in Container.Controls)
@@ -223,6 +225,64 @@ namespace WindowsFormsApp1.business
                 else e.Handled = true;
             }
         }
+        public static void FillComboBox(string connectionString, string query, ComboBox comboBox1)
+        {
+            //leer  una secuencia de filas dentro de una talbla de sql
+            SqlDataReader lista;
+            DataTable Tabla = new DataTable();
+            //debemos conectarnos a la base de datos
+            SqlConnection con = new SqlConnection();
+            try
+            {
+                //string query = "Select * from Productos";
+                
+                //nos devuelve el string de conexion a sql
+                con = Conexion.CrearInstancia().CrearConexion();
+                con.Open();
+                SqlCommand comando = new SqlCommand(query, con);
+                SqlDataReader lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    comboBox1.Items.Add(lector.GetInt32(0).ToString());
+                }    
+                //return Tabla;
+            }
+            finally
+            {
+                // por estar dentro de un try en TEORIA no hace falta
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+            
+        }
+        /*
+        public static void FillComboBox(string connectionString, string query, ComboBox comboBox)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Limpiar el ComboBox antes de llenarlo
+                    comboBox.Items.Clear();
+
+                    while (reader.Read())
+                    {
+                        comboBox.Items.Add(reader["CategoriaId"].ToString());
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        */
         public static void MensajeError(object sender, EventArgs e, Panel Container)
         {
             if (Container.Text == string.Empty)

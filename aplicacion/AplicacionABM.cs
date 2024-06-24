@@ -24,6 +24,13 @@ namespace ABMaplicacion
             //llamar a listar 
             listar();
             formato();
+            string connectionString = "Data Source=server_name;Initial Catalog=database_name;User ID=username;Password=password";
+
+            // Consulta SQL para obtener los datos
+            string query = "SELECT * FROM Categorias";
+
+            // Llamar al método para llenar el ComboBox
+            control.FillComboBox(connectionString, query,textBoxCategoriaFk);
         }
         public AplicacionABM()
         {
@@ -36,11 +43,11 @@ namespace ABMaplicacion
             textBoxProductoId.Text = prueba;
             textBoxNombreP.Text = dataGridViewList.CurrentRow.Cells["NombreP"].Value.ToString();
             prueba = dataGridViewList.CurrentRow.Cells["Habilitado"].Value.ToString();
-            textBoxDetalle.Text = prueba;
+            textBoxHabilitado.Text = prueba;
             prueba = dataGridViewList.CurrentRow.Cells["CantidadP"].Value.ToString();
-            textBoxPrecio.Text = prueba;
+            textBoxCantidad.Text = prueba;
             prueba = dataGridViewList.CurrentRow.Cells["CategoriaFk"].Value.ToString();
-            textBoxMarca.Text = prueba;
+            textBoxCategoriaFk.Text = prueba;
 
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -99,8 +106,8 @@ namespace ABMaplicacion
             textBoxNombreP.Clear();
             textBoxBuscar.Clear();
             textBoxCantidad.Clear();
-            //comboBox1.Items.Clear();
-            //textBoxCategoriaFk.Text = "";
+            //textBoxCategoriaFk.Text = string.Empty;
+            //textBoxHabilitado.Text = string.Empty;
             dataGridViewList.Focus();
             errorProvider1.Clear();
             pbBuscar.BackColor = Color.Black;
@@ -235,24 +242,18 @@ namespace ABMaplicacion
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
         }
-        private void dateTimePickerFecha_ValueChanged(object sender, EventArgs e)
-        {
-            dateTimePickerFecha.MaxDate = DateTime.Today;
-        }
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             try
             {
                 string respuesta = "";
-                //control.MensajeError(sender,e, numericCodigo);
-                
-                if (numericCodigo.Text == string.Empty)
+                if (textBoxProductoId.Text == string.Empty)
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(numericCodigo, "Ingrese el codigo");
                     return;
                 }
-                if (textBoxDetalle.Text == string.Empty)
+                if (textBoxNombreP.Text == string.Empty)
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(textBoxDetalle, "Ingrese el detalle");
@@ -264,28 +265,18 @@ namespace ABMaplicacion
                     errorProvider1.SetError(textBoxMarca, "Ingrese la marca ");
                     return;
                 }
-                if (textBoxPrecio.Text == string.Empty)
-                {
-                    this.MensajeError("Faltan ingresar algunos datos");
-                    errorProvider1.SetError(textBoxPrecio, "Ingrese el precio");
-                    return;
-                }
                 // generar una instancia a clase producto
                 Producto obj = new Producto();
                 obj.ProductoId1 = Convert.ToInt32(textBoxProductoId.Text);
                 obj.NombreP1 = textBoxNombreP.Text;
-                /*obj.Habilitado1 = bool.Parse(textBoxHabilitado.Text);
-                bool success = bool.TryParse(boolString, out bool result);
-                if (success)
-                {
-                    Console.WriteLine(result); // Salida: True
-                }
-                
-                obj.CategoriaFk1 = textBoxMarca.Text;
-                
-                obj.CantidadP1 = textBoxCantidad.Text;
-                obj.CategoriaFk1 = dateTimePickerFecha.Value;
-                */
+                //obj.Habilitado1 = bool.Parse(textBoxHabilitado.Text);
+                //bool success = bool.TryParse(textBoxHabilitado.Text, out bool result);
+                //if (success)
+                //{
+                //    Console.WriteLine(result); // Salida: True
+                //}
+                //obj.CategoriaFk1 = Convert.ToInt32(textBoxCategoriaFk.Text);
+                obj.CantidadP1 = Convert.ToInt32(textBoxCantidad.Text);
                 //generar instancia sql
                 AccesoDatos ds = new AccesoDatos();
                 respuesta = ds.Actualizar(obj);
@@ -405,6 +396,11 @@ namespace ABMaplicacion
         }
 
         private void textBoxCategoriaFk_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

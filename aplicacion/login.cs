@@ -77,6 +77,7 @@ namespace WindowsFormsApp1
         }
         private void rjButton1_Click(object sender, EventArgs e)
         {
+
             formularioAplicacionABM.ShowDialog();
         }
     }
