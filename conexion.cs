@@ -7,27 +7,26 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    public class conexion
+    public class Conexion
     {
-        private string Base;
-        private string Servidor;
-        private string Usuario;
-        private string Clave;
+        public string Base;
+        public string Servidor;
+        public string Usuario;
+        public string Clave;
         //nos permite esteblecer el metodo de autenticacion en SQL
-        private bool Seguridad;
+        public bool Seguridad;
         // crea un obj de tipo conexion nos sirve para compartit y realizar la conexion
-        private static conexion con = null;
-
-        private conexion() 
+        public static Conexion con = null;
+        public Conexion() 
         { 
-            this.Base = "aplicacionBD";
+            this.Base = "StockBD";
             this.Servidor = "DESKTOP-0K564JG";
             this.Usuario = "sa";
             this.Clave = "contrasenia1";
             this.Seguridad = true;
         }
         // metodo para devolver el string de conexion 
-        public SqlConnection crearConexion()
+        public SqlConnection CrearConexion()
         {
             //variable del tipo sql connection
             SqlConnection cadena = new SqlConnection();
@@ -44,7 +43,6 @@ namespace WindowsFormsApp1
                 else
                 {
                     cadena.ConnectionString = cadena.ConnectionString + "User Id=" + this.Usuario + "; Password=" + this.Clave;
-
                 }
             }
             catch (Exception ex)
@@ -56,11 +54,11 @@ namespace WindowsFormsApp1
         }
         //crear un metodo para generar una instancia al constructor
         //de la clase para poder asignar la variables
-        public static conexion crearInstancia()
+        public static Conexion CrearInstancia()
         {
             if (con == null)
             {
-                con = new conexion();
+                con = new Conexion();
             }
             return con;
         }

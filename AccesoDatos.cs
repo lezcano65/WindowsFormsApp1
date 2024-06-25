@@ -6,87 +6,14 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-
-    internal class AccesoDatos
+    public class AccesoDatos
     {
-        /*
-        OleDbCommand pComando;
-        OleDbConnection pConexion;
-        OleDbDataReader pLector;
-        DataTable pTabla;
-        string pCadenaConexion;
-
-        public AccesoDatos(string pCadenaConexion)
-        {
-            this.pComando = new OleDbCommand();
-            this.pConexion = new OleDbConnection(pCadenaConexion);
-            this.pLector = null;
-            this.pTabla = new DataTable();
-            this.pCadenaConexion = pCadenaConexion;
-        }
-        public AccesoDatos() 
-        {
-            this.pComando = new OleDbCommand();
-            this.pConexion = new OleDbConnection();
-            this.pLector = null;
-            this.pTabla = new DataTable();
-            this.pCadenaConexion = "";
-        }
-
-        public OleDbCommand PComando { get => pComando; set => pComando = value; }
-        public OleDbConnection PConexion { get => pConexion; set => pConexion = value; }
-        public OleDbDataReader PLector { get => pLector; set => pLector = value; }
-        public DataTable PTabla { get => pTabla; set => pTabla = value; }
-        public string PCadenaConexion { get => pCadenaConexion; set => pCadenaConexion = value; }
-
-        public void connectar() 
-        {
-            pConexion.ConnectionString = pCadenaConexion;
-            pConexion.Open();
-            pComando.Connection = pConexion;
-            pComando.CommandType = CommandType.Text;
-        }
-        public void desconectar()
-        {
-            pConexion.Close();
-            pConexion.Dispose();
-        }
-        public DataTable consultarTabla(string nombreTabla)
-        {
-            connectar();
-            pComando.CommandText = "select * from " + nombreTabla;
-            pTabla = new DataTable();
-            pTabla.Load(pComando.ExecuteReader());
-            desconectar();
-            return pTabla;
-        }
-        public DataTable consultarBD(string consultaSQL)
-        {
-            connectar();
-            pComando.CommandText = consultaSQL;
-            pTabla = new DataTable();
-            pTabla.Load(pComando.ExecuteReader());
-            desconectar();
-            return pTabla;
-        }
-        public void leerTabla(string nombreTabla)
-        {
-            connectar();
-            pComando.CommandText = "select * from " + nombreTabla;
-            pLector = pComando.ExecuteReader();
-        }
-        public void actualizarBD(string consultaSQL)
-        {
-            connectar();
-            pComando.CommandText = consultaSQL;
-            pComando.ExecuteNonQuery();
-            desconectar();
-        }
-        */
-        public DataTable listar()
+        public DataTable Listar()
         {
             //leer  una secuencia de filas dentro de una talbla de sql
             SqlDataReader lista;
@@ -94,9 +21,9 @@ namespace WindowsFormsApp1
             //debemos conectarnos a la base de datos
             SqlConnection con = new SqlConnection();
             try {
-                string query = "Select * from Producto";
+                string query = "Select * from Productos";
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open(); 
                 lista = comando.ExecuteReader();
@@ -111,7 +38,6 @@ namespace WindowsFormsApp1
                 // por estar dentro de un try en TEORIA no hace falta
                 if (con.State == ConnectionState.Open) con.Close();
             }
-
         }
         public DataTable Buscar(string valor)
         {
@@ -122,10 +48,14 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "Select * from Producto where pDetalle like '%' + '"+valor+"'+ '%' or pMarca like '%' + '"+valor+"'+ '%'";
-
+                string query = "Select * from Productos where NombreP like '%' + '" + valor + "'+ '%'";// or pMarca like '%' + '"+valor+"'+ '%'";
+                bool success = int.TryParse(valor, out int number);
+                if (success)
+                {
+                    query += " or ProductoId like '%' + '" + number + "' + '%' or CategoriaFk like '%' + '" + number + "'+ '%'";
+                }
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open();
                 lista = comando.ExecuteReader();
@@ -142,6 +72,52 @@ namespace WindowsFormsApp1
                 if (con.State == ConnectionState.Open) con.Close();
             }
         }
+        public string NombreDuplicado(Producto valor)
+        {
+            string respuesta = "";
+            //SqlDataReader lista;
+            //DataTable Tabla = new DataTable();
+            //debemos conectarnos a la base de datos
+            //SqlConnection con = new SqlConnection();
+            try
+            {
+                string query = "Select * from Productos where NombreP = '" + valor.NombreP1;
+                //con = Conexion.CrearInstancia().CrearConexion();
+                using (SqlConnection con = Conexion.CrearInstancia().CrearConexion())
+                {
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@NombreP", valor.NombreP1);
+
+                    try
+                    {
+                        con.Open();
+                        int count = (int)cmd.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            Actualizar(valor);
+                            return "El producto ya existe y no se puede crear.";
+                        }
+                        else
+                        {
+                            Insertar(valor);
+                            return "El producto no existe. Se puede crear.";
+                            // Aquí puedes agregar la lógica para crear el producto si es necesario
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                //SqlCommand comando = new SqlCommand(query, con);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return respuesta;
+        }
         public string Insertar(Producto obj)
         {
             string respuesta = "";
@@ -149,35 +125,22 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "Insert into Producto (pCodigo,pDetalle,pCantidad,pMarca,pPrecio,pFecha) values(" +
-                    "'" + obj.PCodigo + "'," +
-                    "'" +obj.PDetalle+"'," +
-                    "'"+obj.PCantidad + "'," +
-                    "'"+obj.PMarca+"'," +
-                    "'"+obj.PPrecio+"'," +
-                    "'"+obj.PFecha.ToString("yyyy-MM-ddTHH:mm:ss") + "')";
+                string query = "Insert into Productos (NombreP,Habilitado,CategoriaFk,CategoriaFkNavigationCategoriaId,CantidadP) values(" +
+                    "'" +obj.NombreP1 + "'," +
+                    "'"+obj.Habilitado1 + "'," +
+                    "'"+obj.CategoriaFk1 + "'," +
+                    "'" + obj.CategoriaFk1 + "'," +
+                    "'" +obj.CantidadP1 + "')";
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open();
                 //en 1 sola linea la exepcion
                 respuesta = comando.ExecuteNonQuery() == 1 ?"OK":"No se pudo ingresar el registro";
-                /*
-                 if (comando.ExecuteNonQuery()==1)
-                {
-                    respuesta= "OK";
-                }
-                else
-                {
-                    respuesta = "No se pudo ingresar el registro"
-                }
-                 */
-
             }
             catch (Exception ex)
             {
                 respuesta=ex.Message;
-                //throw ex;
             }
             finally
             {
@@ -194,24 +157,22 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "Update Producto set pCodigo = '"+obj.PCodigo+"', pDetalle = " +
-                    "'"+obj.PDetalle+"', pMarca = " +
-                    "'"+obj.PMarca+"', pPrecio = " +
-                    "'"+obj.PPrecio+ "', pCantidad = " +
-                    "'"+obj.PCantidad+"', pFecha = " +
-                    "'" + obj.PFecha.ToString("yyyy-MM-ddTHH:mm:ss") + "' where  pCodigo = '"+obj.PCodigo+"'";
+                string query = "Update Productos set NombreP = " +
+                    "'"+obj.NombreP1 + "', Habilitado = " +
+                    "'" +obj.Habilitado1 + "', CategoriaFkNavigationCategoriaId = "+
+                    "'" + obj.CategoriaFk1 + "', CategoriaFk = " +
+                    "'" +obj.CategoriaFk1 + "', CantidadP = " + 
+                    "'" + obj.CantidadP1 + "' where  ProductoId = '" + obj.ProductoId1 + "'";
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open();
                 //en 1 sola linea la exepcion
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo actualizar el registro";
-                
             }
             catch (Exception ex)
             {
                 respuesta = ex.Message;
-                //throw ex;
             }
             finally
             {
@@ -228,19 +189,17 @@ namespace WindowsFormsApp1
             SqlConnection con = new SqlConnection();
             try
             {
-                string query = "delete from Producto where pCodigo = '"+Id+"'";
+                string query = "delete from Productos where ProductoId = '" + Id+"'";
                 //nos devuelve el string de conexion a sql
-                con = conexion.crearInstancia().crearConexion();
+                con = Conexion.CrearInstancia().CrearConexion();
                 SqlCommand comando = new SqlCommand(query, con);
                 con.Open();
                 //en 1 sola linea la exepcion
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se elimino el registro correctamente verifique que el ID sea correcto";
-
             }
             catch (Exception ex)
             {
                 respuesta = ex.Message;
-                //throw ex;
             }
             finally
             {
