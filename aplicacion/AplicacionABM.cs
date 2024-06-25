@@ -140,11 +140,11 @@ namespace ABMaplicacion
         }
         private void ButtonMin_Click(object sender, EventArgs e)
         {
-            control.ButtonMin_Click(sender, e,WindowState);
+            WindowState = control.ButtonMin_Click(sender, e,WindowState);
         }
         private void ButtonMax_Click(object sender, EventArgs e)
         {
-            control.ButtonMax_Click(sender, e,WindowState);
+            WindowState = control.ButtonMax_Click(sender, e,WindowState);
         }
         private void ButtonCerrar_Click(object sender, EventArgs e)
         {
@@ -196,24 +196,28 @@ namespace ABMaplicacion
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(textBoxNombreP, "Ingrese el nombre");
+                    txtLeave(sender, e);
                     return;
                 }
                 if (textBoxHabilitado.Text != "True" && textBoxHabilitado.Text != "False")
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(textBoxHabilitado, "Ingrese si esta habilitado o no");
+                    ComboLeave(sender, e);
                     return;
                 }
                 if (textBoxCategoriaFk.Text == string.Empty)
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(textBoxCategoriaFk, "Ingrese la Categoria ");
+                    ComboLeave(sender, e);
                     return;
                 }
                 if (textBoxCantidad.Text == string.Empty)
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(textBoxCantidad, "Ingrese la Cantidad ");
+                    txtLeave(sender, e);
                     return;
                 }
                 // generar una instancia a clase producto
@@ -263,6 +267,7 @@ namespace ABMaplicacion
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(textBoxProductoId, "Ingrese el codigo");
+                    txtLeave(sender, e);
                     return;
                 }
                 DialogResult Opcion;
@@ -301,29 +306,34 @@ namespace ABMaplicacion
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(textBoxNombreP, "Ingrese el detalle");
+                    txtLeave(sender,e);
                     return;
                 }
                 if (textBoxCategoriaFk.Text == string.Empty)
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(textBoxCategoriaFk, "Ingrese la marca ");
+                    ComboLeave(sender, e);
                     return;
                 }
                 if (textBoxHabilitado.Text != "True" && textBoxHabilitado.Text != "False")
                 {
                     this.MensajeError("Faltan ingresar algunos datos o los datos ingresados no son correctos");
                     errorProvider1.SetError(textBoxHabilitado, "Ingrese si esta habilitado o no");
+                    ComboLeave(sender, e);
                     return;
                 }
                 if (textBoxCantidad.Text == string.Empty)
                 {
                     this.MensajeError("Faltan ingresar algunos datos");
                     errorProvider1.SetError(textBoxCantidad, "Ingrese la cantidad de productos");
+                    txtLeave(sender, e);
                     return;
                 }
                 // generar una instancia a clase producto
                 Producto obj = new Producto();
-                obj.ProductoId1 = Convert.ToInt32(textBoxProductoId.Text);
+                obj.ProductoId1 = 0;
+                //obj.ProductoId1 = Convert.ToInt32(textBoxProductoId.Text);
                 obj.NombreP1 = textBoxNombreP.Text;
                 bool success = bool.TryParse(textBoxHabilitado.Text, out bool result);
                 if (success)

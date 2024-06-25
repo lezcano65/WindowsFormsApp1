@@ -95,14 +95,13 @@ namespace WindowsFormsApp1
 
                         if (count > 0)
                         {
-                            return "El producto ya existe y no se puede crear.";
                             Actualizar(valor);
+                            return "El producto ya existe y no se puede crear.";
                         }
                         else
                         {
-                            return "El producto no existe. Se puede crear.";
                             Insertar(valor);
-
+                            return "El producto no existe. Se puede crear.";
                             // Aquí puedes agregar la lógica para crear el producto si es necesario
                         }
                     }
