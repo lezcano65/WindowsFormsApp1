@@ -14,7 +14,7 @@ namespace GestionStockWeb.Data
 
         public DbSet<Compra> Compras { get; set; }
 
-        public DbSet<Producto> Productos { get; set; }
+        public DbSet<Models.Producto> Productos { get; set; }
 
         public DbSet<Usuario> Usuarios { get; set; }
 

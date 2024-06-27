@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContext<StockDBContext>( options =>
 {
@@ -26,6 +27,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Acceso}/{action=Login}/{id?}");
+    //pattern: "{controller=Acceso}/{action=Login}/{id?}");
+    pattern: "{controller=Mantenedor}/{action=Listar}/{id?}");
 
 app.Run();

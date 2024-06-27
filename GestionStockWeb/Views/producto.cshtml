@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GestionStockWeb.Models.ProductoViewModel>
+@{
+    ViewData["Title"] = "producto";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Productos - GestionStockWeb</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <h2>Lista de Productos</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Producto ID</th>
+                    <th>Nombre</th>
+                    <th>Cantidad en Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductoId</td>
+                        <td>@item.NombreP</td>
+                        <td>@item.CantidadP</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

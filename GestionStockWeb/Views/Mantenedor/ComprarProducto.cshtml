@@ -1,0 +1,46 @@
+﻿@model GestionStockWeb.Models.Compra
+
+@{
+    ViewData["Title"] = "ComprarProducto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ComprarProducto             sadhasjdhas</h1>
+
+<h4>Compra</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ComprarProducto" asp-controller="MantenedorController" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FechaC" class="control-label"></label>
+                <input asp-for="FechaC" class="form-control" />
+                <span asp-validation-for="FechaC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadC" class="control-label"></label>
+                <input asp-for="CantidadC" class="form-control" />
+                <span asp-validation-for="CantidadC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductoFk" class="control-label"></label>
+                <input asp-for="ProductoFk" class="form-control" />
+                <span asp-validation-for="ProductoFk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsuarioFk" class="control-label"></label>
+                <input asp-for="UsuarioFk" class="form-control" />
+                <span asp-validation-for="UsuarioFk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Listar">Back to List</a>
+</div>
+

@@ -9,7 +9,7 @@ namespace GestionStockAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductoController : ControllerBase
+    public class ProductoController : Controller
     {
         private readonly StockDBContext _context;
 
@@ -94,10 +94,37 @@ namespace GestionStockAPI.Controllers
 
             return NoContent();
         }
+        public async Task<IActionResult> Index()
+        {
+            var productos = await _context.Productos
+                .Select(p => new ProductoViewModel
+                {
+                    ProductoId = p.ProductoId,
+                    NombreP = p.NombreP,
+                    CantidadP = p.CantidadP
+                })
+                .ToListAsync();
+
+            return View(productos);
+        }
 
         private bool ProductoExists(int id)
         {
             return _context.Productos.Any(e => e.ProductoId == id);
         }
+        // GET: api/Producto/5/stock
+        [HttpGet("{id}/stock")]
+        public async Task<ActionResult<int>> GetProductoStock(int id)
+        {
+            var producto = await _context.Productos.FindAsync(id);
+
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            return producto.CantidadP;
+        }
+
     }
 }

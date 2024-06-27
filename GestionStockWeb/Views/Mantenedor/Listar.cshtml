@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GestionStockWeb.Models.Producto>
+
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>PODUCTO</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Habilitado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoriaFk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadP)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Habilitado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoriaFk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantidadP)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductoId">Delete</a> |
+                <a asp-action="Guardar" asp-route-id="@item.ProductoId">Comprar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

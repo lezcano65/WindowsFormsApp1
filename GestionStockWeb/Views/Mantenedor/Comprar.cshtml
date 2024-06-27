@@ -1,0 +1,71 @@
+﻿@model GestionStockWeb.Models.Compra
+
+@{
+    ViewData["Title"] = "Comprar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Comprar VIEJOOOOOOOOOOOOOOOOOOOOOOOOOO</h1>
+
+<h4>Compra</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Comprar" asp-controller="CompraController" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FechaC" class="control-label"></label>
+                <input asp-for="FechaC" class="form-control" type="date"  />
+                <span asp-validation-for="FechaC" class="text-danger"></span>
+                <script>
+                    document.addEventListener('DOMContentLoaded', (event) => {
+                        const inputFechaC = document.getElementById('fechaC');
+                        const today = new Date();
+                        const minDate = new Date(today);
+                        minDate.setDate(today.getDate() - 7);
+
+                        const formattedMinDate = today.toISOString().split('T')[0];
+                        const formattedMaxDate = maxDate.toISOString().split('T')[0];
+
+                        inputFechaC.min = formattedMinDate;
+                        inputFechaC.max = today.getDate();
+                        // Prevent the default date picker popup
+                        inputFechaC.addEventListener('click', (event) => {
+                            event.preventDefault();
+                        });
+
+                        // Optionally, handle focus event to prevent showing the date picker
+                        inputFechaC.addEventListener('focus', (event) => {
+                            event.target.blur();
+                        });
+                    });
+                </script>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadC" class="control-label"></label>
+                <input asp-for="CantidadC" class="form-control" />
+                <span asp-validation-for="CantidadC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductoFk" class="control-label"></label>
+                <input asp-for="ProductoFk" class="form-control"  />
+                <span asp-validation-for="ProductoFk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="UsuarioFk" class="control-label"></label>
+                <input asp-for="UsuarioFk" class="form-control" value=1  />
+                <span asp-validation-for="UsuarioFk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Compra" asp-controller="CompraController" class="btn btn-success">CREAR NUEVO</a>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
